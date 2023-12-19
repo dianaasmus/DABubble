@@ -1,10 +1,10 @@
 .login-container {
     background: linear-gradient(1deg, #313AE5 1.22%, #797EF3 98.76%);
     height: 100vh;
-    animation: BackgroundAnimation 1800ms ease-in-out 800ms forwards;
+    animation: backgroundAnimation 1800ms ease-in-out 800ms forwards;
 }
 
-@keyframes BackgroundAnimation {
+@keyframes backgroundAnimation {
     0% {
         background: linear-gradient(1deg, #313AE5 1.22%, #797EF3 98.76%);
     }
@@ -23,9 +23,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: LogoContainerAnimation 500ms ease-in-out 1500ms forwards;
+    animation: logoContainerAnimation 500ms ease-in-out 1500ms forwards;
 
-    @keyframes LogoContainerAnimation {
+    @keyframes logoContainerAnimation {
         0% {
             top: 50%;
             left: 50%;
@@ -40,10 +40,10 @@
 
     img {
         width: 100px;
-        animation: LogoAnimation 1900ms ease-in-out 800ms forwards;
+        animation: logoAnimation 1900ms ease-in-out 800ms forwards;
     }
 
-    @keyframes LogoAnimation {
+    @keyframes logoAnimation {
         0% {
             transform: translateX(0);
         }
@@ -71,10 +71,10 @@
         font-size: 2.5rem;
         opacity: 0;
         white-space: nowrap;
-        animation: NameAnimation 1900ms ease-in-out 800ms forwards;
+        animation: nameAnimation 1900ms ease-in-out 800ms forwards;
     }
 
-    @keyframes NameAnimation {
+    @keyframes nameAnimation {
         0% {
             transform: translateX(0px);
         }
@@ -104,6 +104,52 @@
             opacity: 1;
             font-size: 1.5rem;
             color: black;
+        }
+    }
+}
+
+.fade-in-animation {
+    opacity: 0;
+    animation: fadeIn 1900ms ease-in-out 800ms forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.legal-notice {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 30px;
+
+    a {
+        text-decoration: none;
+        color: var(--Purple-1, #444DF2);
+        border: 1px solid transparent;
+        border-radius: 30px;
+        padding: 3px 5px;
+        cursor: pointer;
+
+        &:hover {
+            border: 1px solid hsl(240deg 11.34% 73.1%);
         }
     }
 }
