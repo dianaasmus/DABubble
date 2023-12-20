@@ -1,4 +1,4 @@
-.login {
+.signUp {
     border-radius: 30px;
     background: var(--White, #FFF);
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
@@ -36,22 +36,6 @@
         border: 0;
     }
 
-    #email {
-        background-image: url('../../assets/imgs/mail.png');
-        background-repeat: no-repeat;
-        background-position-x: 25px;
-        background-position-y: 12px;
-        background-size: 20px;
-    }
-
-    #password {
-        background-image: url('../../assets/imgs/lock.png');
-        background-repeat: no-repeat;
-        background-position-x: 25px;
-        background-position-y: 12px;
-        background-size: 20px;
-    }
-
     a {
         text-decoration: none;
 
@@ -63,27 +47,48 @@
     }
 }
 
-.or-container {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    box-sizing: border-box;
+#signUpFirstLastName {
+    background-image: url('../../assets/imgs/person_filled.png');
+    background-repeat: no-repeat;
+    background-position-x: 25px;
+    background-position-y: 12px;
+    background-size: 20px;
+}
 
-    hr {
-        height: 1px;
-        border: none;
-        width: 39%;
-        background-color: gray;
-        border-radius: 5px;
-        margin: 10px;
-    }
+#signUpEmail {
+    background-image: url('../../assets/imgs/mail.png');
+    background-repeat: no-repeat;
+    background-position-x: 25px;
+    background-position-y: 12px;
+    background-size: 20px;
+}
 
-    p {
-        margin: 0;
+#signUpPassword {
+    background-image: url('../../assets/imgs/lock.png');
+    background-repeat: no-repeat;
+    background-position-x: 25px;
+    background-position-y: 12px;
+    background-size: 20px;
+}
+
+.back-to-login {
+    background-image: url('../../assets/imgs/arrow_back.png');
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 40px;
+    left: 33px;
+    background-color: unset;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ECEEFE;
     }
 }
 
-button {
+.next-btn {
     all: unset;
     border-radius: 30px;
     background-color: #ECEEFE;
@@ -92,44 +97,12 @@ button {
     text-align: center;
     padding: 11px 10px;
     cursor: pointer;
-}
-
-.google-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 300px;
-    gap: 10px;
-    border: 1px solid transparent;
-
-    &:hover {
-        border: 1px solid #444DF2;
-    }
-
-    img {
-        height: 20px;
-    }
-}
-
-.login-options {
-    display: flex;
-    gap: 10px;
-}
-
-.login-btn {
     background: var(--Purple-1, #444DF2);
     color: white;
+    position: relative;
+    right: -115px;
 
     &:hover {
         background-color: #676eee;
-    }
-}
-
-.guest-login-btn {
-    color: var(--Purple-1, #444DF2);
-
-    &:hover {
-        background: var(--Purple-1, #444DF2);
-        color: white;
     }
 }

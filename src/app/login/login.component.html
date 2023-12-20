@@ -1,17 +1,12 @@
-<aside class="signup-container">
-    <p>Neu bei DABubble?</p>
-    <a>Konto erstellen</a>
-</aside>
-
 <form class="login">
 
     <h1>Anmeldung</h1>
     
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
 
-    <input id="email" type="email" name="email" placeholder="beispielname@email.de" required>
+    <input id="email" type="email" name="email" placeholder="beispielname@email.de" autocomplete="on" required>
 
-    <input id="password" type="password" name="password" placeholder="Password" required>
+    <input id="password" type="password" name="password" placeholder="Password" autocomplete="on" required>
 
     <a href="#">Password vergessen?</a>
 
@@ -27,7 +22,7 @@
     </button>
 
     <div class="login-options">
-        <button class="login-btn">Anmelden</button>
+        <button class="login-btn" routerLink="/registrieren">Anmelden</button>
 
         <button class="guest-login-btn">Gäste-Login</button>
     </div>

@@ -4,7 +4,13 @@
         <p>DABubble</p>
     </div>
 
-    <app-login class="fade-in-animation"></app-login>
+    <aside id="signUpBtn" class="signup-container">
+        <p>Neu bei DABubble?</p>
+        <a (click)="openSignUp()">Konto erstellen</a>
+    </aside>
+
+    <app-login id="login" class="fade-in-animation"></app-login>
+    <app-sign-up id="signUp" class="d-none"></app-sign-up>
 
     <div class="legal-notice">
         <a href="#">Impressum</a>

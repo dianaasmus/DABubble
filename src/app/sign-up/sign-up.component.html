@@ -1,0 +1,20 @@
+<form [formGroup]="newUser" class="signUp" (ngSubmit)="submitForm($event)">
+
+    <button class="back-to-login"></button>
+
+    <h1>Konto erstellen</h1>
+
+    <p>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.</p>
+
+    <input id="signUpFirstLastName" type="text" name="firstLastName" formControlName="firstLastName"
+        placeholder="Vor- und Nachname" autocomplete="on" required>
+
+    <input id="signUpEmail" type="email" name="email" formControlName="email" placeholder="beispielname@email.de"
+        autocomplete="on" required>
+
+    <input id="signUpPassword" type="password" name="password" formControlName="password" placeholder="Password"
+        autocomplete="on" required>
+
+    <button [disabled] class="next-btn" type="submit">Anmelden</button>
+
+</form>
