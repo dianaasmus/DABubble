@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
-import { LoginAnimationComponent } from './login-animation/login-animation.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './startscreen/login/login.component';
+import { SignUpComponent } from './startscreen/sign-up/sign-up.component';
+import { StartscreenComponent } from './startscreen/startscreen.component';
 
 
 export const routes: Routes = [
-    { path: '', component: LoginAnimationComponent },
-    { path: 'registrieren', component: SignUpComponent }
+    { path: '', component: StartscreenComponent },
+    // { path: 'registrieren', component: SignUpComponent }
 ];

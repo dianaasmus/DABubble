@@ -1,3 +1,5 @@
+@import './../../app.component.scss';
+
 .login {
     border-radius: 30px;
     background: var(--White, #FFF);
@@ -16,6 +18,7 @@
     margin: 0;
     padding: 30px;
     box-sizing: border-box;
+    animation: zIndexScaleUp 1900ms ease-in-out 1000ms forwards;
 
     h1 {
         color: var(--Purple-1, #444DF2);
@@ -37,7 +40,7 @@
     }
 
     #email {
-        background-image: url('../../assets/imgs/mail.png');
+        background-image: url('../../../assets/imgs/mail.png');
         background-repeat: no-repeat;
         background-position-x: 25px;
         background-position-y: 12px;
@@ -45,7 +48,7 @@
     }
 
     #password {
-        background-image: url('../../assets/imgs/lock.png');
+        background-image: url('../../../assets/imgs/lock.png');
         background-repeat: no-repeat;
         background-position-x: 25px;
         background-position-y: 12px;
@@ -132,4 +135,8 @@ button {
         background: var(--Purple-1, #444DF2);
         color: white;
     }
+}
+
+.d-none {
+    display: none;
 }

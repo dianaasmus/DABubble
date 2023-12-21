@@ -16,6 +16,7 @@
     margin: 0;
     padding: 30px;
     box-sizing: border-box;
+    z-index: 3;
 
     h1 {
         color: var(--Purple-1, #444DF2);
@@ -35,20 +36,10 @@
         background-color: #ECEEFE;
         border: 0;
     }
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            border-radius: 30px;
-            background-color: #ECEEFE;
-            padding: 0 9px;
-        }
-    }
 }
 
 #signUpFirstLastName {
-    background-image: url('../../assets/imgs/person_filled.png');
+    background-image: url('../../../assets/imgs/person_filled.png');
     background-repeat: no-repeat;
     background-position-x: 25px;
     background-position-y: 12px;
@@ -56,7 +47,7 @@
 }
 
 #signUpEmail {
-    background-image: url('../../assets/imgs/mail.png');
+    background-image: url('../../../assets/imgs/mail.png');
     background-repeat: no-repeat;
     background-position-x: 25px;
     background-position-y: 12px;
@@ -64,7 +55,7 @@
 }
 
 #signUpPassword {
-    background-image: url('../../assets/imgs/lock.png');
+    background-image: url('../../../assets/imgs/lock.png');
     background-repeat: no-repeat;
     background-position-x: 25px;
     background-position-y: 12px;
@@ -72,7 +63,7 @@
 }
 
 .back-to-login {
-    background-image: url('../../assets/imgs/arrow_back.png');
+    background-image: url('../../../assets/imgs/arrow_back.png');
     background-repeat: no-repeat;
     position: absolute;
     top: 40px;

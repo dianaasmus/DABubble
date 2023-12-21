@@ -1,0 +1,26 @@
+@import './../../app.component.scss';
+
+.legal-notice {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 30px;
+    animation: zIndexScaleUp 1900ms ease-in-out 1000ms forwards;
+
+
+    a {
+        text-decoration: none;
+        color: var(--Purple-1, #444DF2);
+        border: 1px solid transparent;
+        border-radius: 30px;
+        padding: 3px 5px;
+        cursor: pointer;
+
+        &:hover {
+            border: 1px solid hsl(240deg 11.34% 73.1%);
+        }
+    }
+}
