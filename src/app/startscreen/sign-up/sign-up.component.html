@@ -6,15 +6,37 @@
 
     <p>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.</p>
 
-    <input id="signUpFirstLastName" type="text" name="firstLastName" formControlName="firstLastName"
-        placeholder="Vor- und Nachname" autocomplete="on" required>
+    <div class="input-error-container">
+        <input id="signUpFirstLastName" type="text" name="firstLastName" formControlName="firstLastName"
+            placeholder="Vor- und Nachname" autocomplete="on" required>
+        <p *ngIf="newUser.get('firstLastName')?.invalid && newUser.get('firstLastName')?.touched" class="error-text">
+            Der Vor- und Nachname ist ungültig.
+        </p>
+    </div>
 
-    <input id="signUpEmail" type="email" name="email" formControlName="email" placeholder="beispielname@email.de"
-        autocomplete="on" required>
+    <div class="input-error-container">
+        <input id="signUpEmail" type="email" name="email" formControlName="email" placeholder="beispielname@email.de"
+            autocomplete="on" required>
+        <p *ngIf="newUser.get('email')?.invalid && newUser.get('email')?.touched" class="error-text">
+            Die E-Mail-Adresse ist ungültig.
+        </p>
+    </div>
 
-    <input id="signUpPassword" type="password" name="password" formControlName="password" placeholder="Password"
-        autocomplete="on" required>
+    <div class="input-error-container">
+        <input id="signUpPassword" type="password" name="password" formControlName="password" placeholder="Password"
+            autocomplete="on" required>
+        <p *ngIf="newUser.get('password')?.invalid && newUser.get('password')?.touched" class="error-text">
+            Das Password ist ungültig.
+        </p>
+    </div>
 
-    <button [disabled] class="next-btn" type="submit">Anmelden</button>
+    <label>
+        <input id="checkbox" type="checkbox" name="myCheckbox" (change)="onCheckboxChange($event)">
+        Ich stimme der
+        <a href="#">Datenschutzerklärung</a>
+        zu.
+    </label>
+
+    <button [disabled]="submitForm" class="next-btn" type="submit">Anmelden</button>
 
 </form>

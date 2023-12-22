@@ -1,5 +1,3 @@
-@import './../../app.component.scss';
-
 .login {
     border-radius: 30px;
     background: var(--White, #FFF);
@@ -18,7 +16,7 @@
     margin: 0;
     padding: 30px;
     box-sizing: border-box;
-    animation: zIndexScaleUp 1900ms ease-in-out 1000ms forwards;
+    z-index: 3;
 
     h1 {
         color: var(--Purple-1, #444DF2);

@@ -36,6 +36,36 @@
         background-color: #ECEEFE;
         border: 0;
     }
+
+    input:user-invalid {
+        border: 1px solid red;
+    }
+
+    a {
+        color: #797EF3;
+        text-decoration: none;
+
+        &:hover {
+            border-radius: 30px;
+            background-color: #ECEEFE;
+        }
+    }
+}
+
+.input-error-container {
+    position: relative;
+
+    p {
+        position: absolute;
+        font-size: 0.7rem;
+        left: 5px;
+        padding-top: 5px;
+        color: red;
+    }
+}
+
+#checkbox {
+    cursor: pointer;
 }
 
 #signUpFirstLastName {

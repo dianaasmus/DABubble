@@ -1,9 +1,13 @@
 <app-login-animation></app-login-animation>
 
-<app-sign-up-notice *ngIf="showLogin"></app-sign-up-notice>
+<div class="fade-in-animation">
 
-<app-login *ngIf="showLogin"></app-login>
+    <app-sign-up-notice *ngIf="showLogin"></app-sign-up-notice>
 
-<app-sign-up *ngIf="showSignup"></app-sign-up>
+    <app-login *ngIf="showLogin"></app-login>
 
-<app-legal-notice></app-legal-notice>
+    <app-sign-up *ngIf="showSignup"></app-sign-up>
+
+    <app-legal-notice></app-legal-notice>
+
+</div>
