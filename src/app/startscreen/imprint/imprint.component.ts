@@ -2,20 +2,16 @@ import { Component } from '@angular/core';
 import { StartscreenComponent } from '../startscreen.component';
 
 @Component({
-  selector: 'app-legal-notice',
+  selector: 'app-imprint',
   standalone: true,
   imports: [],
-  templateUrl: './legal-notice.component.html',
-  styleUrl: './legal-notice.component.scss'
+  templateUrl: './imprint.component.html',
+  styleUrl: './imprint.component.scss'
 })
-export class LegalNoticeComponent {
+export class ImprintComponent {
 
   constructor(public startscreen: StartscreenComponent) {}
 
-
-  toggleDataProtection() {
-    this.startscreen.toggleDataProtection();
-  }
 
   toggleImprint() {
     this.startscreen.toggleImprint();
