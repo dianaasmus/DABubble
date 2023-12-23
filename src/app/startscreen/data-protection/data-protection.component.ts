@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { StartscreenComponent } from '../startscreen.component';
 
 @Component({
-  selector: 'app-legal-notice',
+  selector: 'app-data-protection',
   standalone: true,
   imports: [],
-  templateUrl: './legal-notice.component.html',
-  styleUrl: './legal-notice.component.scss'
+  templateUrl: './data-protection.component.html',
+  styleUrl: './data-protection.component.scss'
 })
-export class LegalNoticeComponent {
+export class DataProtectionComponent {
 
   constructor(public startscreen: StartscreenComponent) {}
 

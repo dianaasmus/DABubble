@@ -17,18 +17,11 @@ export class SignUpComponent {
   checkData = false;
 
 
-  // newUser = new FormGroup({
-  //   firstLastName: new FormControl(''),
-  //   email: new FormControl(''),
-  //   password: new FormControl(''),
-  //   checkData: new FormControl(this.checkData)
-  // });
-
   newUser = this.fb.group({
     firstLastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+\s[a-zA-Z]+$/)]],
     email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
     password: ['', [Validators.required, Validators.pattern(/^(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/)]],
-    checkData: [this.checkData, Validators.requiredTrue]
+    checkData: [this.checkData]
   });
 
 
@@ -43,12 +36,17 @@ export class SignUpComponent {
   submitForm(e: any) {
     e.preventDefault();
     console.log(this.newUser);
-    
+    this.newUser.reset();
   }
 
 
   toggleSignup() {
     this.startscreen.toggleSignup();
+  }
+  
+
+  toggleDataProtection() {
+    this.startscreen.toggleDataProtection();
   }
 
 }

@@ -30,11 +30,12 @@
     }
 
     input {
-        padding: 13px 110px 13px 70px;
-        box-sizing: content-box;
+        padding: 13px 20px 13px 70px;
+        width: 350px;
+        box-sizing: border-box;
         border-radius: 30px;
         background-color: #ECEEFE;
-        border: 0;
+        border: 1px solid transparent;
     }
 
     #email {

@@ -4,6 +4,7 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { SignUpNoticeComponent } from './sign-up-notice/sign-up-notice.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { NgIf } from '@angular/common';
 
 
@@ -11,17 +12,22 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-startscreen',
   standalone: true,
-  imports: [LoginAnimationComponent, SignUpComponent, LegalNoticeComponent, SignUpNoticeComponent, LoginComponent, NgIf],
+  imports: [LoginAnimationComponent, SignUpComponent, LegalNoticeComponent, SignUpNoticeComponent, LoginComponent, DataProtectionComponent, NgIf],
   templateUrl: './startscreen.component.html',
   styleUrl: './startscreen.component.scss'
 })
 export class StartscreenComponent {
   showLogin = true;
   showSignup = false;
+  showDataProtection = false;
 
   toggleSignup() {
     this.showLogin = !this.showLogin;
     this.showSignup = !this.showSignup;
+  }
+
+  toggleDataProtection() {
+    this.showDataProtection = !this.showDataProtection;
   }
 
 }

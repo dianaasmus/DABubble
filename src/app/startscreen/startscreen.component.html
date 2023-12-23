@@ -2,12 +2,14 @@
 
 <div class="fade-in-animation">
 
-    <app-sign-up-notice *ngIf="showLogin"></app-sign-up-notice>
+    <app-sign-up-notice *ngIf="showLogin  && !showDataProtection"></app-sign-up-notice>
 
-    <app-login *ngIf="showLogin"></app-login>
+    <app-login *ngIf="showLogin && !showDataProtection"></app-login>
 
-    <app-sign-up *ngIf="showSignup"></app-sign-up>
+    <app-sign-up *ngIf="showSignup && !showDataProtection"></app-sign-up>
 
-    <app-legal-notice></app-legal-notice>
+    <app-data-protection *ngIf="showDataProtection"></app-data-protection>
+
+    <app-legal-notice *ngIf="!showDataProtection"></app-legal-notice>
 
 </div>
