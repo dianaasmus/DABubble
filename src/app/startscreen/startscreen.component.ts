@@ -6,6 +6,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { ImprintComponent } from './imprint/imprint.component';
+import { SelectAvatarComponent } from './select-avatar/select-avatar.component';
 import { NgIf } from '@angular/common';
 
 
@@ -13,7 +14,7 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-startscreen',
   standalone: true,
-  imports: [LoginAnimationComponent, SignUpComponent, LegalNoticeComponent, SignUpNoticeComponent, LoginComponent, DataProtectionComponent, ImprintComponent, NgIf],
+  imports: [LoginAnimationComponent, SignUpComponent, LegalNoticeComponent, SignUpNoticeComponent, SelectAvatarComponent, LoginComponent, DataProtectionComponent, ImprintComponent, NgIf],
   templateUrl: './startscreen.component.html',
   styleUrl: './startscreen.component.scss'
 })
@@ -22,18 +23,28 @@ export class StartscreenComponent {
   showSignup = false;
   showDataProtection = false;
   showImprint = false;
+  selectAvatar = false;
+
 
   toggleSignup() {
     this.showLogin = !this.showLogin;
     this.showSignup = !this.showSignup;
   }
 
+
   toggleDataProtection() {
     this.showDataProtection = !this.showDataProtection;
   }
 
+
   toggleImprint() {
     this.showImprint = !this.showImprint;
+  }
+
+
+  toggleSelectAvatar() {
+    this.showSignup = !this.showSignup;
+    this.selectAvatar = !this.selectAvatar;
   }
 
 }

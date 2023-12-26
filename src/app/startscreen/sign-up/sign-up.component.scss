@@ -143,8 +143,7 @@ a {
     cursor: pointer;
     background: var(--Purple-1, #444DF2);
     color: white;
-    position: relative;
-    right: -115px;
+    align-self: end;
 
     &:hover {
         background-color: #676eee;

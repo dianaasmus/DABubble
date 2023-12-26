@@ -1,0 +1,136 @@
+.signUp {
+    border-radius: 30px;
+    background: var(--White, #FFF);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
+    height: fit-content;
+    max-width: 400px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 3;
+
+    h1 {
+        color: var(--Purple-1, #444DF2);
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    p {
+        align-self: flex-start;
+        padding-left: 10px;
+        margin: 0;
+    }
+
+    a {
+        color: #797EF3;
+        text-decoration: none;
+
+        &:hover {
+            border-radius: 30px;
+            background-color: #ECEEFE;
+        }
+    }
+}
+
+.avatar-placeholder {
+    background-color: #444DF2;
+    border-radius: 100%;
+    padding: 20px 25px;
+
+    img {
+        height: 70px;
+    }
+}
+
+.back-to-login {
+    background-image: url('../../../assets/imgs/arrow_back.png');
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 40px;
+    left: 33px;
+    background-color: unset;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ECEEFE;
+    }
+}
+
+.next-btn {
+    all: unset;
+    border-radius: 30px;
+    background-color: #ECEEFE;
+    border: 0;
+    padding: 8px;
+    text-align: center;
+    padding: 11px 10px;
+    cursor: pointer;
+    background: var(--Purple-1, #444DF2);
+    color: white;
+    align-self: end;
+    width: 65px;
+
+    &:hover {
+        background-color: #676eee;
+    }
+}
+
+#avatarSelection {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.avatar-pic  {
+    height: 45px;
+    padding: 3px;
+    cursor: pointer;
+
+    &:hover {
+        padding: 3px;
+        background-color: #F4D3B8;
+        border-radius: 30px;
+    }
+}
+
+.upload-img {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+
+    p {
+        padding-top: 5px;
+    }
+
+    button {
+        all: unset;
+        border: 1px solid #44d;
+        border-radius: 30px;
+        padding: 5px;
+        color: #44d;
+        margin: 0 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #444DF2;
+            color: white;
+        }
+    }
+}

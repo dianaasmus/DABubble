@@ -3,13 +3,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
 import { NgIf } from '@angular/common';
+import { SelectAvatarComponent } from '../select-avatar/select-avatar.component';
 
 
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule, LegalNoticeComponent, NgIf],
+  imports: [ReactiveFormsModule, LegalNoticeComponent, SelectAvatarComponent, NgIf],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })
@@ -37,6 +38,13 @@ export class SignUpComponent {
     e.preventDefault();
     console.log(this.newUser);
     this.newUser.reset();
+
+    this.openSelectAvatar();
+  }
+
+
+  openSelectAvatar() {
+    this.startscreen.toggleSelectAvatar();
   }
 
 
