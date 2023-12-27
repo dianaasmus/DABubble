@@ -1,29 +1,30 @@
-<form class="signUp" (ngSubmit)="submitForm($event)">
+<form class="signUp">
 
     <a (click)="toggleSelectAvatar()" class="back-to-login"></a>
 
     <h1>Wähle deinen Avatar</h1>
 
-    <div class="avatar-placeholder">
-        <img src="../../../assets/imgs/person.png" alt="Avatar placeholder">
+    <div id="avatarPlaceholder" class="avatar-placeholder">
+        <img id="showAvatarImg" src="{{ avatarSrc }}" alt="Avatar placeholder">
     </div>
 
-    <h2>Anna Müller</h2>
+    <h2>{{ newUser.value.firstLastName }}</h2>
 
     <p>Aus der Liste wählen</p>
 
     <div id="avatarSelection">
-        <img class="avatar-pic" src="../../../assets/imgs/avatar1.png" alt="Avatar1">
-        <img class="avatar-pic" src="../../../assets/imgs/avatar2.png" alt="Avatar2">
-        <img class="avatar-pic" src="../../../assets/imgs/avatar3.png" alt="Avatar3">
-        <img class="avatar-pic" src="../../../assets/imgs/avatar4.png" alt="Avatar4">
-        <img class="avatar-pic" src="../../../assets/imgs/avatar5.png" alt="Avatar5">
-        <img class="avatar-pic" src="../../../assets/imgs/avatar6.png" alt="Avatar6">
+        <img (click)="selectAvatar(1)" class="avatar-pic" src="../../../assets/imgs/avatar1.png" alt="Avatar1">
+        <img (click)="selectAvatar(2)" class="avatar-pic" src="../../../assets/imgs/avatar2.png" alt="Avatar2">
+        <img (click)="selectAvatar(3)" class="avatar-pic" src="../../../assets/imgs/avatar3.png" alt="Avatar3">
+        <img (click)="selectAvatar(4)" class="avatar-pic" src="../../../assets/imgs/avatar4.png" alt="Avatar4">
+        <img (click)="selectAvatar(5)" class="avatar-pic" src="../../../assets/imgs/avatar5.png" alt="Avatar5">
+        <img (click)="selectAvatar(6)" class="avatar-pic" src="../../../assets/imgs/avatar6.png" alt="Avatar6">
     </div>
 
     <div class="upload-img">
         <p>Eigenes Bild verwenden</p>
-        <button>Datei hochladen</button>
+        <input type="file" id="img" style="display:none;" (change)="uploadFiles($event)">
+        <label for="img" class="btn upload">Foto hochladen</label>
     </div>
 
     <button class="next-btn" type="submit">Weiter</button>

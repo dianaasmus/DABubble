@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
+import { CreateNewUserService } from '../../create-new-user.service';
 
 @Component({
   selector: 'app-select-avatar',
@@ -11,14 +12,29 @@ import { StartscreenComponent } from '../startscreen.component';
   styleUrl: './select-avatar.component.scss'
 })
 export class SelectAvatarComponent {
-  newUser: any;
+  newUser = this.createNU.newUser;
+  avatarSrc = '../../../assets/imgs/person.png';
 
-  constructor(public startscreen: StartscreenComponent) { }
+
+  constructor(public startscreen: StartscreenComponent, public createNU: CreateNewUserService) { }
 
 
-  submitForm(e: any) {
-    e.preventDefault();
-    console.log(this.newUser);
+  uploadFiles(event: any) {
+    if (event.target.files[0]) {
+      let reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+
+      reader.onload = (event: any) => {
+        this.avatarSrc = event.target.result;
+        document.getElementById('avatarPlaceholder')?.classList.add('selected-avatar');
+      };
+    }
+  }
+
+
+  selectAvatar(avatarNbr: number) {
+    this.avatarSrc = `../../../assets/imgs/avatar${avatarNbr}.png`;
+    document.getElementById('avatarPlaceholder')?.classList.add('selected-avatar');
   }
 
 

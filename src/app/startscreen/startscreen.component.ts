@@ -8,6 +8,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import { ImprintComponent } from './imprint/imprint.component';
 import { SelectAvatarComponent } from './select-avatar/select-avatar.component';
 import { NgIf } from '@angular/common';
+import { FormGroup } from '@angular/forms';
 
 
 
@@ -24,6 +25,7 @@ export class StartscreenComponent {
   showDataProtection = false;
   showImprint = false;
   selectAvatar = false;
+  newUser!: any;
 
 
   toggleSignup() {
