@@ -1,0 +1,44 @@
+.feedback-container {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: #44d;
+    color: white;
+    border-bottom-right-radius: 0 !important;
+    border-radius: 20px;
+    z-index: 3;
+    padding: 0 20px;
+    overflow-x: hidden;
+    transform: translateX(1000px);
+    animation: fadeInFeedback 2000ms ease-in-out forwards;
+
+    h2 {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+}
+
+@keyframes fadeInFeedback {
+    0% {
+        transform: translateX(1000px);
+    }
+
+    25% {
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(0px);
+    }
+
+    75% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(1000px);
+    }
+}

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateNewUserService } from '../../create-new-user.service';
+import { DialogFeedbackComponent } from '../../dialog-feedback/dialog-feedback.component';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
-import { CreateNewUserService } from '../../create-new-user.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-select-avatar',
@@ -16,7 +20,19 @@ export class SelectAvatarComponent {
   avatarSrc = '../../../assets/imgs/person.png';
 
 
-  constructor(public startscreen: StartscreenComponent, public createNU: CreateNewUserService) { }
+  constructor(public startscreen: StartscreenComponent, public createNU: CreateNewUserService, public dialog: MatDialog, private router: Router) { }
+
+
+  createUser(e: Event) {
+    e.preventDefault();
+    console.log(this.newUser);
+    this.dialog.open(DialogFeedbackComponent, { data: { message: 'Konto erfolgreich erstellt!' }});
+    setTimeout(() => {
+      this.startscreen.selectAvatar = false;
+      this.startscreen.showLogin = true;
+    }, 1000);
+    this.newUser.reset();
+  }
 
 
   uploadFiles(event: any) {
