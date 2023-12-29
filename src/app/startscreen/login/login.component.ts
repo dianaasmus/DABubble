@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { DatabaseFireService } from '../../database-fire.service';
 
 
 @Component({
@@ -9,4 +10,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  constructor(private database: DatabaseFireService) {
+    database.log();
+  }
 }

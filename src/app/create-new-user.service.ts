@@ -11,7 +11,8 @@ export class CreateNewUserService {
     firstLastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+\s[a-zA-Z]+$/)]],
     email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
     password: ['', [Validators.required, Validators.pattern(/^(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/)]],
-    checkData: [false, Validators.requiredTrue]
+    checkData: [false, Validators.requiredTrue],
+    profileImg: ['', undefined]
   });
   
 

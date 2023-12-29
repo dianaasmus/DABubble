@@ -5,7 +5,6 @@ import { CreateNewUserService } from '../../create-new-user.service';
 import { DialogFeedbackComponent } from '../../dialog-feedback/dialog-feedback.component';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,18 +19,29 @@ export class SelectAvatarComponent {
   avatarSrc = '../../../assets/imgs/person.png';
 
 
-  constructor(public startscreen: StartscreenComponent, public createNU: CreateNewUserService, public dialog: MatDialog, private router: Router) { }
+  constructor(public startscreen: StartscreenComponent, public createNU: CreateNewUserService, public dialog: MatDialog) { }
 
 
-  createUser(e: Event) {
+  createUser(e: Event): void {
     e.preventDefault();
-    console.log(this.newUser);
-    this.dialog.open(DialogFeedbackComponent, { data: { message: 'Konto erfolgreich erstellt!' }});
+    this.openFeedbackDialog('Konto erfolgreich erstellt!');
+    this.newUser.get('profileImg')?.setValue(this.avatarSrc);
+    this.performActionsAfterDelay();
+  }
+
+
+  private openFeedbackDialog(message: string): void {
+    this.dialog.open(DialogFeedbackComponent, { data: { message } });
+  }
+
+
+  private performActionsAfterDelay(): void {
     setTimeout(() => {
       this.startscreen.selectAvatar = false;
       this.startscreen.showLogin = true;
+      this.newUser.reset();
+      this.dialog.closeAll();
     }, 1000);
-    this.newUser.reset();
   }
 
 
@@ -43,6 +53,7 @@ export class SelectAvatarComponent {
       reader.onload = (event: any) => {
         this.avatarSrc = event.target.result;
         document.getElementById('avatarPlaceholder')?.classList.add('selected-avatar');
+        this.newUser.get('profileImg')?.setValue(this.avatarSrc);
       };
     }
   }

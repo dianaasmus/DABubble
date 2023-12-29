@@ -10,11 +10,10 @@ import { StartscreenComponent } from "./../startscreen.component";
 })
 export class SignUpNoticeComponent {
 
-  constructor(public startscreen: StartscreenComponent ) {}
+  constructor(public startscreen: StartscreenComponent) {}
 
   toggleSignup() {
     this.startscreen.toggleSignup();
   }
-
 
 }

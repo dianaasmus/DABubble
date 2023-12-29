@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dabubble-d80a3": {
+      "hosting": {
+        "dabubble": [
+          "dabubble-d80a3"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dabubble-d80a3"
+  }
+}

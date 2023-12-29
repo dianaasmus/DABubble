@@ -15,11 +15,11 @@ import { StartscreenComponent } from '../startscreen.component';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  checkData = this.createNU.checkData; // ________________________________________required
+  checkData = this.createNU.checkData;
   newUser = this.createNU.newUser;
 
 
-  constructor(public startscreen: StartscreenComponent, public createNU: CreateNewUserService) { }
+  constructor(public createNU: CreateNewUserService, public startscreen: StartscreenComponent) { }
 
 
   submitForm(e: any) {
