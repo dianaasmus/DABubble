@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CreateNewUserService } from '../../create-new-user.service';
+import { DatabaseFireService } from '../../database-fire.service';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
 
@@ -15,11 +15,11 @@ import { StartscreenComponent } from '../startscreen.component';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  checkData = this.createNU.checkData;
-  newUser = this.createNU.newUser;
+  checkData = this.database.checkData;
+  newUser = this.database.newUser;
 
 
-  constructor(public createNU: CreateNewUserService, public startscreen: StartscreenComponent) { }
+  constructor(public database: DatabaseFireService, public startscreen: StartscreenComponent) { }
 
 
   submitForm(e: any) {

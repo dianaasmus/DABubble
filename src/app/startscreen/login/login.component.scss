@@ -139,3 +139,15 @@ button {
 .d-none {
     display: none;
 }
+
+.input-error-container {
+    position: relative;
+
+    p {
+        position: absolute;
+        font-size: 0.7rem;
+        left: 5px;
+        padding-top: 5px;
+        color: red;
+    }
+}
