@@ -19,7 +19,7 @@ interface User {
 export class DatabaseFireService {
   firestore: Firestore = inject(Firestore);
   users: User[] = [];
-  checkData: boolean = false;
+  checkData!: boolean;
 
   newUser = this.fb.group({
     firstLastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+\s[a-zA-Z]+$/)]],

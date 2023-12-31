@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DatabaseFireService } from '../../database-fire.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent {
     password: new FormControl()
   });
 
-  constructor(private database: DatabaseFireService) { }
+  constructor(private database: DatabaseFireService, private router: Router) { }
 
 
   submitForm(e: any) {
@@ -29,7 +30,7 @@ export class LoginComponent {
 
     if (userExists) {
       if (userExists.password === enteredPassword) {
-        console.log('Der Benutzer existiert und das Passwort ist korrekt.');
+        this.redirectDashboard();
       } else {
         this.loginFeedback();
       }
@@ -46,5 +47,10 @@ export class LoginComponent {
 
   onFeedbackChange() {
     this.loginFeedbacks = '';
+  }
+  
+
+  redirectDashboard() {
+    this.router.navigate(['/dashboard']);
   }
 }
