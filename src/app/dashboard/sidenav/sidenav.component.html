@@ -1,17 +1,18 @@
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="sidenav-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <p>Auto-resizing sidenav</p>
-        @if (showFiller) {
-        <p>Lorem, ipsum dolor sit amet consectetur.</p>
-        }
-        <button (click)="showFiller = !showFiller" mat-raised-button>
-            Toggle extra text
-        </button>
     </mat-drawer>
 
     <div class="example-sidenav-content">
-        <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
-        </button>
+        
     </div>
+
+    <!-- <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+    </button> -->
 </mat-drawer-container>
+
+<button type="button" (click)="drawer.toggle()">
+    <span>Workspace Menü schließen</span>
+    <img src="../../../assets/icons/Group 2.png" alt="Menü schließen">
+</button>

@@ -8,24 +8,24 @@
         <input id="signUpEmail" type="email" name="email" formControlName="email" placeholder="beispielname@email.de"
             autocomplete="on" [class.red-border]="loginUser.get('email')?.invalid && loginUser.get('email')?.touched"
             (change)="onFeedbackChange()" required>
-        <p *ngIf="loginUser.get('email')?.invalid && loginUser.get('email')?.touched">
+        @if (loginUser.get('email')?.invalid && loginUser.get('email')?.touched) {<p>
             Bitte geben Sie eine gültige E-Mail-Adresse ein.
-        </p>
-        <p *ngIf="loginUser.get('email')?.touched && loginFeedbacks">
+        </p>}
+        @if (loginUser.get('email')?.touched && loginFeedbacks) {<p>
             {{loginFeedbacks}}
-        </p>
+        </p>}
     </div>
 
     <div class="input-error-container">
         <input id="signUpPassword" type="password" name="password" formControlName="password" placeholder="Password"
             autocomplete="on" (change)="onFeedbackChange()"
             [class.red-border]="loginUser.get('password')?.invalid && loginUser.get('password')?.touched" required>
-        <p *ngIf="loginUser.get('password')?.invalid && loginUser.get('password')?.touched">
+        @if (loginUser.get('password')?.invalid && loginUser.get('password')?.touched) {<p>
             Bitte geben Sie ein gültiges Passwort ein.
-        </p>
-        <p *ngIf="loginFeedbacks">
+        </p>}
+        @if (loginFeedbacks) {<p>
             {{loginFeedbacks}}
-        </p>
+        </p>}
     </div>
 
     <a href="#">Password vergessen?</a>

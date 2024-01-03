@@ -2,18 +2,18 @@
 
 <div class="fade-in-animation">
 
-    <app-sign-up-notice *ngIf="showLogin && !showDataProtection && !showImprint"></app-sign-up-notice>
+    @if (showLogin && !showDataProtection && !showImprint) {<app-sign-up-notice></app-sign-up-notice>}
 
-    <app-login *ngIf="showLogin && !showDataProtection && !showImprint"></app-login>
+    @if (showLogin && !showDataProtection && !showImprint) {<app-login></app-login>}
 
-    <app-sign-up *ngIf="showSignup && !showDataProtection && !showImprint"></app-sign-up>
+    @if (showSignup && !showDataProtection && !showImprint) {<app-sign-up></app-sign-up>}
 
-    <app-select-avatar *ngIf="selectAvatar && !showDataProtection && !showImprint"></app-select-avatar>
+    @if (selectAvatar && !showDataProtection && !showImprint) {<app-select-avatar></app-select-avatar>}
 
-    <app-data-protection *ngIf="showDataProtection"></app-data-protection>
+    @if (showDataProtection) {<app-data-protection></app-data-protection>}
 
-    <app-imprint *ngIf="showImprint"></app-imprint>
+    @if (showImprint) {<app-imprint></app-imprint>}
 
-    <app-legal-notice *ngIf="!showDataProtection && !showImprint"></app-legal-notice>
+    @if (!showDataProtection && !showImprint) {<app-legal-notice></app-legal-notice>}
 
 </div>

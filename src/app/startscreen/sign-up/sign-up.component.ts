@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatabaseFireService } from '../../database-fire.service';
@@ -10,7 +9,7 @@ import { StartscreenComponent } from '../startscreen.component';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule, LegalNoticeComponent, NgIf],
+  imports: [ReactiveFormsModule, LegalNoticeComponent],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })

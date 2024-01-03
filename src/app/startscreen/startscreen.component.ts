@@ -7,15 +7,12 @@ import { LoginComponent } from './login/login.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { SelectAvatarComponent } from './select-avatar/select-avatar.component';
-import { NgIf } from '@angular/common';
-import { FormGroup } from '@angular/forms';
-
 
 
 @Component({
   selector: 'app-startscreen',
   standalone: true,
-  imports: [LoginAnimationComponent, SignUpComponent, LegalNoticeComponent, SignUpNoticeComponent, SelectAvatarComponent, LoginComponent, DataProtectionComponent, ImprintComponent, NgIf],
+  imports: [LoginAnimationComponent, SignUpComponent, LegalNoticeComponent, SignUpNoticeComponent, SelectAvatarComponent, LoginComponent, DataProtectionComponent, ImprintComponent],
   templateUrl: './startscreen.component.html',
   styleUrl: './startscreen.component.scss'
 })
