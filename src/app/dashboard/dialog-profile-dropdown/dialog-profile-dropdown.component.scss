@@ -1,0 +1,14 @@
+.profile-dropdown {
+    padding: 15px 20px;
+
+    p {
+        padding: 10px 30px;
+        margin: 0;
+        cursor: pointer;
+
+        &:hover {
+            border-radius: 30px;
+            background-color: #ECEEFE;
+        }
+    }
+}

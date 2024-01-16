@@ -61,7 +61,7 @@ export class SelectAvatarComponent {
 
 
   selectAvatar(avatarNbr: number) {
-    this.avatarSrc = `../../../assets/imgs/avatar${avatarNbr}.png`;
+    this.avatarSrc = `../../../assets/imgs/avatars/avatar${avatarNbr}.png`;
     document.getElementById('avatarPlaceholder')?.classList.add('selected-avatar');
   }
 

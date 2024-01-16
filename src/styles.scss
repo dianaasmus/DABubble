@@ -6,9 +6,9 @@ body, html {
     background-color: #ECEEFE;
 }
 
-.cdk-overlay-dark-backdrop {
-    background: none !important;
-}
+// .cdk-overlay-dark-backdrop {
+//     background: none !important;
+// }
 
 /* nunito-200 - latin */
 @font-face {
@@ -55,3 +55,20 @@ body, html {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-dialog-container {
+    position: absolute !important;
+    height: auto !important;
+    width: auto !important;
+    right: 50px !important;
+    left: unset !important;
+    top: 70px !important;
+    border-radius: 30px !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-top-right-radius: 0px !important;
+    border-top-left-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+}

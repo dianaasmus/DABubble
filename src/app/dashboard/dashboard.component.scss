@@ -1,0 +1,66 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+    height: 85px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    gap: 15px;
+    cursor: pointer;
+
+    img {
+        height: 40px;
+    }
+}
+
+#headerInput {
+    width: 50%;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 15px;
+    background-image: url('../../assets/imgs/search.png');
+    background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: center;
+    background-size: 22px;
+}
+
+.logged-user-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    span {
+        font-weight: 600;
+    }
+
+    img {
+        height: 25px;
+        cursor: pointer;
+    }
+
+    hr {
+        border: 2px solid white;
+        margin: 0;
+        height: 10px;
+        width: 10px;
+        background-color: green;
+        border-radius: 100%;
+        position: absolute;
+        top: 28px;
+        right: 34px;
+    }
+}
+
+#headerProfile {
+    height: 40px;
+    border-radius: 100%;
+}
