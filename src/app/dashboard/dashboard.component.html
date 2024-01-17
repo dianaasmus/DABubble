@@ -1,17 +1,19 @@
-<header>
-    <div class="logo-container" (click)="reloadPage()">
-        <img src="../../assets/imgs/Logo.png" alt="DABubble Logo">
-        DABubble
+<app-header class="header-position"></app-header>
+
+<mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer #drawer class="drawer-sidenav" mode="side">
+
+        <app-sidenav></app-sidenav>
+
+    </mat-drawer>
+
+    <div class="drawer-sidenav-content">
+        <h1>hello</h1>
     </div>
+    
+</mat-drawer-container>
 
-    <input id="headerInput" type="text" placeholder="Code learning durchsuchen">
-
-    <div class="logged-user-container" (click)="openDrodown()">
-        <span>Frederik Beck</span>
-        <img id="headerProfile" src="../../assets/imgs/avatars/avatar1.png" alt="Profile Image">
-        <hr>
-        <img src="../../assets/imgs/keyboard_arrow_down.png" alt="Arrow Dropdown">
-    </div>
-</header>
-
-<app-sidenav></app-sidenav>
+<button type="button" (click)="drawer.toggle()">
+    <span>Workspace Menü schließen</span>
+    <img src="../../../assets/icons/Group 2.png" alt="Menü schließen">
+</button>

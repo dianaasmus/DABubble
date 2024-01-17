@@ -1,58 +1,51 @@
-<mat-drawer #drawer class="example-sidenav" mode="side">
-    <div class="channel-infos">
-        <img class="channel-logo" src="../../../assets/imgs/nav/Workspace logo.png" alt="Code learning Logo">
-        <span>Code learning</span>
-        <img class="channel-edit" src="../../../assets/imgs/nav/edit_square.png" alt="edit Square">
+<div class="channel-infos">
+    <img class="channel-logo" src="../../../assets/imgs/nav/Workspace logo.png" alt="Code learning Logo">
+    <span>Code learning</span>
+    <img class="channel-edit" src="../../../assets/imgs/nav/edit_square.png" alt="edit Square">
+</div>
+
+<div class="gap">
+    <div class="gap">
+        <div class="channels-container" (click)="toggleShowChannels()">
+            <img id="arrowDropChannel" src="../../../assets/imgs/nav/arrow_drop_down.png" alt="Arrow Drop Down">
+            <div>
+                <img src="../../../assets/imgs/nav/workspaces.png" alt="workspaces">
+                <span>Channnels</span>
+            </div>
+        </div>
+        <img class="add" src="../../../assets/imgs/nav/add.png" alt="Add Channel">
+
+        <div *ngIf="showChannels" id="allChannels">
+            <p class="on-channel-focus">
+                <img class="filter" src="../../../assets/imgs/nav/tag.png" alt="Tag Image">
+                Entwicklerteam
+            </p>
+            <p class="add-channel">
+                <img src="../../../assets/imgs/nav/add_circle.png" alt="add Channel">
+                Channel hinzufügen
+            </p>
+        </div>
     </div>
 
     <div class="gap">
-        <div class="gap">
-            <div class="channels-container" (click)="toggleShowChannels()">
-                <img id="arrowDropChannel" src="../../../assets/imgs/nav/arrow_drop_down.png" alt="Arrow Drop Down">
-                <div>
-                    <img src="../../../assets/imgs/nav/workspaces.png" alt="workspaces">
-                    <span>Channnels</span>
-                </div>
-            </div>
-            <img class="add" src="../../../assets/imgs/nav/add.png" alt="Add Channel">
-
-            <div *ngIf="showChannels" id="allChannels">
-                <p class="on-channel-focus">
-                    <img class="filter" src="../../../assets/imgs/nav/tag.png" alt="Tag Image">
-                    Entwicklerteam
-                </p>
-                <p class="add-channel">
-                    <img src="../../../assets/imgs/nav/add_circle.png" alt="add Channel">
-                    Channel hinzufügen
-                </p>
+        <div class="dm-container" (click)="toggleShowDMs()">
+            <img id="arrowDropDM" src="../../../assets/imgs/nav/arrow_drop_down.png" alt="Arrow Drop Down">
+            <div>
+                <img src="../../../assets/imgs/nav/account_circle.png" alt="Accounts">
+                <span>Direktnachrichten</span>
             </div>
         </div>
-
-        <div class="gap">
-            <div class="dm-container" (click)="toggleShowDMs()">
-                <img id="arrowDropDM" src="../../../assets/imgs/nav/arrow_drop_down.png" alt="Arrow Drop Down">
-                <div>
-                    <img src="../../../assets/imgs/nav/account_circle.png" alt="Accounts">
-                    <span>Direktnachrichten</span>
-                </div>
+        <div *ngIf="showDMs" id="allDMs">
+            <div>
+                <img src="../../../assets/imgs/avatars/avatar1.png" alt="Profile Image">
+                <hr>
+                Frederick Beck (Du)
             </div>
-            <div *ngIf="showDMs" id="allDMs">
-                <div>
-                    <img src="../../../assets/imgs/avatars/avatar1.png" alt="Profile Image">
-                    <hr>
-                    Frederick Beck (Du)
-                </div>
-                <div>
-                    <img src="../../../assets/imgs/avatars/avatar2.png" alt="Profile Image">
-                    <hr>
-                    Sofia Müller
-                </div>
+            <div>
+                <img src="../../../assets/imgs/avatars/avatar2.png" alt="Profile Image">
+                <hr>
+                Sofia Müller
             </div>
         </div>
     </div>
-</mat-drawer>
-
-<button type="button" (click)="drawer.toggle()">
-    <span>Workspace Menü schließen</span>
-    <img src="../../../assets/icons/Group 2.png" alt="Menü schließen">
-</button>
+</div>

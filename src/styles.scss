@@ -72,3 +72,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-bottom-left-radius: 30px !important;
     border-bottom-right-radius: 30px !important;
 }
+
+.mat-drawer-content {
+    position: absolute !important;
+    z-index: 1 !important;
+    display: block !important;
+    height: 89vh !important;
+    bottom: 0 !important;
+    top: unset !important;
+    left: 60px !important;
+    right: 0 !important;
+    overflow: auto !important;
+}
