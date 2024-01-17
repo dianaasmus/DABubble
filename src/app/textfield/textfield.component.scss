@@ -1,0 +1,66 @@
+.chat-textarea {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    border: 1px solid gray;
+    border-radius: 20px;
+
+    &:hover {
+        border-color: #535AF1;
+    }
+
+    textarea {
+        border: none;
+        border-radius: 20px;
+        width: 99%;
+        height: 60px;
+        resize: none;
+        padding: 15px;
+        box-sizing: border-box;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+
+.textarea-addition {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 10px 10px;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+            height: 20px;
+            padding: 3px;
+            cursor: pointer;
+
+            &:hover {
+                border-radius: 30px;
+                background-color: #ECEEFE;
+            }
+        }
+
+        hr {
+            border: none;
+            background-color: gray;
+            height: 25px;
+            width: 1px;
+            margin: 0;
+        }
+    }
+}
+
+.send-icon {
+    height: 30px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

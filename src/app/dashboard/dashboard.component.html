@@ -1,14 +1,18 @@
 <app-header class="header-position"></app-header>
 
 <mat-drawer-container class="drawer-container" autosize>
-    <mat-drawer #drawer class="drawer-sidenav" mode="side">
+    <mat-drawer #drawer class="drawer-sidenav" mode="side" [opened]="true">
 
         <app-sidenav></app-sidenav>
 
     </mat-drawer>
 
     <div class="drawer-sidenav-content">
-        <h1>hello</h1>
+        
+        <app-main-chat></app-main-chat>
+
+        <app-threat></app-threat>
+
     </div>
     
 </mat-drawer-container>

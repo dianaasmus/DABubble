@@ -19,14 +19,18 @@
 
 .drawer-sidenav {
     visibility: visible;
-    height: 84vh;
+    height: 83vh;
     background-color: white;
     padding: 20px 25px 20px 20px;
     border-radius: 30px;
     position: absolute;
-    left: 30px;
+    left: 25px;
     bottom: 30px;
     top: auto;
+}
+
+.drawer-sidenav-content {
+    display: flex;
 }
 
 button {
@@ -47,7 +51,25 @@ button {
     box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.20);
     cursor: pointer;
 
+    &:hover {
+        color: #535AF1;
+
+        img {
+            filter: invert(28%) sepia(41%) saturate(3656%) hue-rotate(227deg) brightness(105%) contrast(89%);
+        }
+    }
+
     img {
         transform: rotateZ(90deg);
     }
+}
+
+app-main-chat {
+    height: 77vh;
+    background-color: white;
+    padding: 20px 25px 20px 20px;
+    border-radius: 30px;
+    position: relative;
+    width: 50%;
+    display: flex;
 }
