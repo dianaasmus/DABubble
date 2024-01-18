@@ -12,7 +12,7 @@
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     cursor: pointer;
     font-weight: 600;
 }
@@ -34,6 +34,13 @@
 .add-user {
     height: 23px;
     cursor: pointer;
+    border-radius: 30px;
+    background-color: #ECEEFE;
+    padding: 3px;
+
+    &:hover {
+        filter: invert(28%) sepia(41%) saturate(3656%) hue-rotate(227deg) brightness(105%) contrast(89%);
+    }
 }
 
 #usersDisplay {
