@@ -29,11 +29,6 @@
     top: auto;
 }
 
-.drawer-sidenav-content {
-    display: flex;
-    gap: 25px;
-}
-
 button {
     display: flex;
     position: absolute;
@@ -66,11 +61,8 @@ button {
 }
 
 app-main-chat {
-    height: 77vh;
-    background-color: white;
-    padding: 20px 25px 20px 20px;
-    border-radius: 30px;
-    position: relative;
-    width: 56%;
     display: flex;
+    height: 83vh;
+    margin-right: 25px;
+    gap: 25px;
 }

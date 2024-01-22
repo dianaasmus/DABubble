@@ -14,11 +14,7 @@ import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 export class SidenavComponent {
   showDMs = true;
   showChannels = true;
-  @ViewChild('drawer') drawer!: MatDrawer;
 
-  // ngAfterViewInit() {
-  //   this.drawer.toggle();
-  // }
 
   toggleShowChannels() {
     const arrowDropChannel = document.getElementById('arrowDropChannel');
@@ -30,6 +26,7 @@ export class SidenavComponent {
     }
   }
 
+  
   toggleShowDMs() {
     const arrowDropDM = document.getElementById('arrowDropDM');
     this.showDMs = !this.showDMs;

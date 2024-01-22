@@ -1,9 +1,28 @@
-<div id="chatHistory">
+<div id="chatHistory" #chatHistory>
 
     <div class="message-time">
         <hr>
         <p class="message-details-border">Dienstag, 14. Januar</p>
         <hr>
+    </div>
+
+    <div class="sent-user">
+        <div class="sent-message">
+            <p>
+                <span class="sent-message-time">21:30 Uhr</span>
+                <span class="sent-user-name">Frederick Beck</span>
+            </p>
+            <p class="sent-message-text">
+                hello! sdafkhaspf
+                asfaf adfa sadfa
+            </p>
+            <div class="sent-message-feedback">
+                <p class="message-details-border">emoji 1</p>
+                <p class="message-details-border">emoji 2</p>
+                <img class="emoji-reaction" src="../../assets/imgs/main-chat/add_reaction.png" alt="Add reaction">
+            </div>
+        </div>
+        <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
     </div>
 
     <div class="sent-user received">
@@ -19,7 +38,7 @@
                 asfaf adfa sadfa
             </p>
             <div class="sent-message-feedback">
-                <a href="#">2 Antworten</a>
+                <a type="button" (click)="this.mainChat.threat = true">2 Antworten</a>
                 <span>Letzte Antwort 21:30 Uhr</span>
             </div>
         </div>

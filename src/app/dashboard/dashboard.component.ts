@@ -5,12 +5,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './header/header.component';
 import { MainChatComponent } from './main-chat/main-chat.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { ThreatComponent } from './threat/threat.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, SidenavComponent, MainChatComponent, ThreatComponent, FormsModule, MatButtonModule, MatSidenavModule],
+  imports: [HeaderComponent, SidenavComponent, MainChatComponent, FormsModule, MatButtonModule, MatSidenavModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
