@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -17,5 +17,19 @@ import { MainChatComponent } from '../../main-chat/main-chat.component';
 export class ThreatComponent {
 
   constructor(public mainChat: MainChatComponent) {}
+
+  @ViewChild('scrollThreatHistory', { static: true }) chatHistory!: ElementRef;
+
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+
+  scrollToBottom() {
+    try {
+      this.chatHistory.nativeElement.scrollTop = this.chatHistory.nativeElement.scrollHeight;
+    } catch(err) { }
+  }
 
 }

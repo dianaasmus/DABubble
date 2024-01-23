@@ -10,7 +10,9 @@
         <span class="close-threat" (click)="mainChat.threat = false">x</span>
     </div>
 
-    <app-chat-history></app-chat-history>
+    <div [style]="{'overflow-y': 'auto'}" #scrollThreatHistory>
+        <app-chat-history></app-chat-history>
+    </div>
 
     <app-textfield></app-textfield>
 

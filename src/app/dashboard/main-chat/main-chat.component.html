@@ -17,7 +17,9 @@
         </div>
     </div>
 
-    <app-chat-history></app-chat-history>
+    <div [style]="{'overflow-y': 'auto'}" #scrollChatHistory>
+        <app-chat-history></app-chat-history>
+    </div>
 
     <app-textfield></app-textfield>
 </div>

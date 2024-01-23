@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 
 
@@ -12,9 +12,5 @@ import { MainChatComponent } from '../main-chat/main-chat.component';
 export class ChatHistoryComponent {
 
   constructor(public mainChat: MainChatComponent) { }
-
-  @ViewChild('chatHistory') chatHistory!: ElementRef;
-
-
 
 }

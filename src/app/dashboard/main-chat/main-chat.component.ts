@@ -1,8 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { TextfieldComponent } from '../textfield/textfield.component';
-import { ChatHistoryComponent } from '../chat-history/chat-history.component';
 import { NgIf } from '@angular/common';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChatHistoryComponent } from '../chat-history/chat-history.component';
 import { ThreatComponent } from '../chat-history/threat/threat.component';
+import { TextfieldComponent } from '../textfield/textfield.component';
 
 
 @Component({
@@ -14,4 +14,18 @@ import { ThreatComponent } from '../chat-history/threat/threat.component';
 })
 export class MainChatComponent {
   threat: boolean = false;
+  @ViewChild('scrollChatHistory', { static: true }) chatHistory!: ElementRef;
+
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+
+  scrollToBottom() {
+    try {
+      this.chatHistory.nativeElement.scrollTop = this.chatHistory.nativeElement.scrollHeight;
+    } catch(err) { }
+  }
+
 }
