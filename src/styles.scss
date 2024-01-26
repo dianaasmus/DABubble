@@ -2,7 +2,8 @@
     font-family: 'Nunito', sans-serif;
 }
 
-body, html {
+body,
+html {
     background-color: #ECEEFE;
 }
 
@@ -49,34 +50,35 @@ body, html {
     src: url('assets/fonts/nunito-v26-latin-800.woff2') format('woff2');
     /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.mat-mdc-dialog-container {
-    position: absolute !important;
-    height: auto !important;
-    width: auto !important;
-    right: 50px !important;
-    left: unset !important;
-    top: 70px !important;
-    border-radius: 30px !important;
+html,
+body {
+    height: 100%;
 }
 
-.mat-mdc-dialog-container .mdc-dialog__surface {
-    border-top-right-radius: 0px !important;
-    border-top-left-radius: 30px !important;
-    border-bottom-left-radius: 30px !important;
-    border-bottom-right-radius: 30px !important;
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.drawer-sidenav-content {
-    position: absolute !important;
-    z-index: 1 !important;
-    display: block !important;
-    height: 87vh !important;
-    bottom: 0 !important;
-    top: unset !important;
-    left: 50px !important;
-    right: 0 !important;
-    overflow: auto !important;
+.profile-dropdown-container {
+
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        position: absolute;
+        height: auto;
+        width: auto;
+        right: 50px;
+        left: unset;
+        top: 70px;
+        border-radius: 30px;
+    }
+}
+
+.channel-settings-container {
+
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        border-radius: 30px;
+        border-top-left-radius: 0;
+
+    }
 }

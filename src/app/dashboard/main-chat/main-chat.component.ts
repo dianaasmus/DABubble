@@ -3,6 +3,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChatHistoryComponent } from '../chat-history/chat-history.component';
 import { ThreatComponent } from '../chat-history/threat/threat.component';
 import { TextfieldComponent } from '../textfield/textfield.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';
 
 
 @Component({
@@ -17,6 +19,9 @@ export class MainChatComponent {
   @ViewChild('scrollChatHistory', { static: true }) chatHistory!: ElementRef;
 
 
+  constructor(public dialog: MatDialog) {}
+
+
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
@@ -26,6 +31,15 @@ export class MainChatComponent {
     try {
       this.chatHistory.nativeElement.scrollTop = this.chatHistory.nativeElement.scrollHeight;
     } catch(err) { }
+  }
+
+
+  openSettings(channel: string) {
+    console.log(channel);
+    
+    this.dialog.open(DialogChannelSettingsComponent, {
+      panelClass: 'channel-settings-container',
+    });
   }
 
 }

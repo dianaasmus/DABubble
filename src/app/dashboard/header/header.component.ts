@@ -20,6 +20,8 @@ export class HeaderComponent {
 
 
   openDrodown() {
-    this.dialog.open(DialogProfileDropdownComponent);
+    this.dialog.open(DialogProfileDropdownComponent, {
+      panelClass: 'profile-dropdown-container',
+    });
   }
 }
