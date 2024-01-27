@@ -1,6 +1,5 @@
 .channel-settings {
-    width: 100%;
-    max-width: 500px;
+    width: 500px;
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -67,6 +66,62 @@ header {
         &:hover {
             color: #3c43f0;
         }
+    }
+}
+
+input {
+    border: none;
+    pointer-events: none;
+    background-image: url('../../../assets/imgs/main-chat/hashtag.png');
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: left;
+    padding: 10px 25px;
+    background-position-x: 5px;
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &::placeholder {
+        color: black;
+    }
+}
+
+textarea {
+    border: none;
+    resize: none;
+    pointer-events: none;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.editName {
+    border: none;
+    padding: 0;
+
+    input {
+        border: 1px solid #797EF3;
+        border-radius: 20px;
+        padding: 10px 25px;
+        background-position-x: 5px;
+        pointer-events: all;
+    }
+}
+
+.editDescr {
+    border: none;
+    padding: 0;
+
+    textarea {
+        border: 1px solid #797EF3;
+        border-radius: 20px;
+        padding: 10px 25px;
+        background-position-x: 5px;
+        pointer-events: all;
+        height: 52px;
     }
 }
 

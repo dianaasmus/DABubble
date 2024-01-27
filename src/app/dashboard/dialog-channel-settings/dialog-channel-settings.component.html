@@ -7,25 +7,21 @@
         <span (click)="closeDialog()">x</span>
     </header>
 
-    <div class="edit-channel-name">
+    <div [class.editName]="editName" class="edit-channel-name">
         <p>
             <span>Channel-Name</span>
-            <a>Bearbeiten</a>
+            <a (click)="toggleEditState('name')">{{ editName ? 'Speichern' : 'Bearbeiten' }}</a>
         </p>
-        <span class="edit-name">
-            <img src="../../assets/imgs/main-chat/hashtag.png" alt="Hashtag">
-            Entwicklerteam
-        </span>
+        <input onchange="preventDefault()" type="text" name="" id="" placeholder="Entwicklerteam">
     </div>
 
-    <div class="edit-channel-descr">
+    <div [class.editDescr]="editDescr" class="edit-channel-descr">
         <p>
             <span>Beschreibung</span>
-            <a>Bearbeiten</a>
+            <a (click)="toggleEditState('descr')">{{ editDescr ? 'Speichern' : 'Bearbeiten' }}</a>
         </p>
-        <span class="descr">
-            Dieser Channel ist für alles rund um #xyz vorgesehen. Hier kannst du zusammen mit deinem Team Meetings abhalten, Dokumente teilen und Entscheidungen treffen.
-        </span>
+        <textarea class="descr" name="" id="" >Dieser Channel ist für alles rund um #xyz vorgesehen. Hier kannst du zusammen mit deinem Team Meetings abhalten, Dokumente teilen und Entscheidungen treffen.
+        </textarea>
         <hr>
         <p>
             <span>Erstellt von</span>
