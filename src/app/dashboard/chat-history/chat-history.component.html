@@ -6,23 +6,25 @@
         <hr>
     </div>
 
-    <div class="sent-user">
-        <div class="sent-message">
-            <p>
-                <span class="sent-message-time">21:30 Uhr</span>
-                <span class="sent-user-name">Frederick Beck</span>
-            </p>
-            <p class="sent-message-text">
-                hello! sdafkhaspf
-                asfaf adfa sadfa
-            </p>
-            <div class="sent-message-feedback">
-                <p class="message-details-border">emoji 1</p>
-                <p class="message-details-border">emoji 2</p>
-                <img class="emoji-reaction" src="../../assets/imgs/main-chat/add_reaction.png" alt="Add reaction">
+    <div>
+        <div class="sent-user">
+            <div class="sent-message">
+                <p>
+                    <span class="sent-message-time">{{time}}</span>
+                    <span class="sent-user-name">{{usersService.currentUser}}</span>
+                </p>
+                <p class="sent-message-text">
+                    hello! sdafkhaspf
+                    asfaf adfa sadfa
+                </p>
+                <div class="sent-message-feedback">
+                    <p class="message-details-border">emoji 1</p>
+                    <p class="message-details-border">emoji 2</p>
+                    <img class="emoji-reaction" src="../../assets/imgs/main-chat/add_reaction.png" alt="Add reaction">
+                </div>
             </div>
+            <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
         </div>
-        <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
     </div>
 
     <div class="sent-user received">

@@ -1,5 +1,5 @@
 <div class="chat-textarea">
-    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <textarea [(ngModel)]="textarea" name="textField" cols="30" rows="10"></textarea>
     <div class="textarea-addition">
         <div>
             <img src="../../../assets/imgs/main-chat/add (1).png" alt="Add Appendix">
@@ -7,6 +7,8 @@
             <img src="../../../assets/imgs/main-chat/sentiment_satisfied.png" alt="Emoji">
             <img src="../../../assets/imgs/main-chat/alternate_email.png" alt="Email">
         </div>
-        <img class="send-icon" src="../../../assets/imgs/main-chat/Send icon.png" alt="Send">
+        <a (click)="sendMessage()">
+            <img class="send-icon" src="../../../assets/imgs/main-chat/Send icon.png" alt="Send">
+        </a>
     </div>
 </div>

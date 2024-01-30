@@ -12,7 +12,7 @@
             <span>Channel-Name</span>
             <a (click)="toggleEditState('name')">{{ editName ? 'Speichern' : 'Bearbeiten' }}</a>
         </p>
-        <input onchange="preventDefault()" type="text" name="" id="" placeholder="Entwicklerteam">
+        <input type="text" name="" id="" placeholder="Entwicklerteam">
     </div>
 
     <div [class.editDescr]="editDescr" class="edit-channel-descr">
