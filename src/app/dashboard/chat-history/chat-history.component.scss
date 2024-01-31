@@ -90,7 +90,8 @@
 }
 
 .received {
-    justify-content: flex-start !important;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
 
     .sent-message {
         align-items: start !important;

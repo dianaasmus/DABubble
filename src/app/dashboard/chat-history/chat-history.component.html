@@ -6,27 +6,26 @@
         <hr>
     </div>
 
-    <div>
-        <div class="sent-user">
-            <div class="sent-message">
-                <p>
-                    <span class="sent-message-time">{{time}}</span>
-                    <span class="sent-user-name">{{usersService.currentUser}}</span>
-                </p>
-                <p class="sent-message-text">
-                    hello! sdafkhaspf
-                    asfaf adfa sadfa
-                </p>
-                <div class="sent-message-feedback">
-                    <p class="message-details-border">emoji 1</p>
-                    <p class="message-details-border">emoji 2</p>
-                    <img class="emoji-reaction" src="../../assets/imgs/main-chat/add_reaction.png" alt="Add reaction">
-                </div>
+    <!-- <div *NgFor="allChatMessage"> -->
+    @for (chatMessage of getChannelMessages(); track chatMessage.id) {<div [class.received]="chatMessage.firstName !== usersService.currentUser" class="sent-user">
+        <div class="sent-message">
+            <p>
+                <span class="sent-message-time">{{time}}</span>
+                <span class="sent-user-name">{{chatMessage.firstName}} {{chatMessage.lastName}}</span>
+            </p>
+            <p class="sent-message-text">
+                {{chatMessage.message}}
+            </p>
+            <div class="sent-message-feedback">
+                <p class="message-details-border">emoji 1</p>
+                <p class="message-details-border">emoji 2</p>
+                <img class="emoji-reaction" src="../../assets/imgs/main-chat/add_reaction.png" alt="Add reaction">
             </div>
-            <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
         </div>
-    </div>
-
+        <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
+    </div>}
+    <!-- </div> -->
+    <!-- 
     <div class="sent-user received">
         <img src="../../../assets/imgs/avatars/avatar3.png" alt="user-profile">
 
@@ -69,5 +68,5 @@
             </div>
         </div>
         <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
-    </div>
+    </div> -->
 </div>

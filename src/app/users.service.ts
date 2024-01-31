@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UsersService {
-  currentUser: string = 'Frederick Beck';
+  currentUser: string = 'Frederick';
   
 }

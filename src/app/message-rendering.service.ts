@@ -7,11 +7,11 @@ import { Message } from './models/message.class';
 })
 export class MessageRenderingService {
   firestore: Firestore = inject(Firestore);
-  messages!: Message[];
+  messages: Message[] = [];
 
 
   constructor() {
-    this.subProductsList();
+    this.subProductsList();    
   }
 
 
@@ -28,12 +28,11 @@ export class MessageRenderingService {
     return messagesRef;
   }
 
-  
+
   private subProductsList() {
     let messagesRef = this.getChannelMessages();
 
     onSnapshot(messagesRef, (list) => {
-      this.messages = [];
       list.forEach((element) => {
         this.messages.push(this.setMessageObject(element.data(), element.id));
       });
