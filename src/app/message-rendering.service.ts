@@ -45,7 +45,8 @@ export class MessageRenderingService {
       id: obj.id,
       firstName: obj.firstName,
       lastName: obj.lastName,
-      message: obj.message
+      message: obj.message,
+      time: obj.time
     };
   }
 }

@@ -6,11 +6,11 @@
         <hr>
     </div>
 
-    <!-- <div *NgFor="allChatMessage"> -->
-    @for (chatMessage of getChannelMessages(); track chatMessage.id) {<div [class.received]="chatMessage.firstName !== usersService.currentUser" class="sent-user">
-        <div class="sent-message">
-            <p>
-                <span class="sent-message-time">{{time}}</span>
+    @for (chatMessage of getChannelMessages(); track chatMessage.id) {
+    <div [class.received]="chatMessage.firstName !== usersService.currentUser" class="sent-user">
+    <div class="sent-message">
+            <p class="time-name">
+                <span class="sent-message-time">{{getFormattedTime(chatMessage.time)}}</span>
                 <span class="sent-user-name">{{chatMessage.firstName}} {{chatMessage.lastName}}</span>
             </p>
             <p class="sent-message-text">
@@ -22,51 +22,7 @@
                 <img class="emoji-reaction" src="../../assets/imgs/main-chat/add_reaction.png" alt="Add reaction">
             </div>
         </div>
-        <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
+        <img src="{{ getUserImage(chatMessage.firstName, chatMessage.lastName) }}" alt="user-profile">
     </div>}
-    <!-- </div> -->
-    <!-- 
-    <div class="sent-user received">
-        <img src="../../../assets/imgs/avatars/avatar3.png" alt="user-profile">
 
-        <div class="sent-message">
-            <p>
-                <span class="sent-user-name">Noah Braun</span>
-                <span class="sent-message-time">21:20 Uhr</span>
-            </p>
-            <p class="sent-message-text">
-                hello! sdafkhaspf
-                asfaf adfa sadfa
-            </p>
-            <div class="sent-message-feedback">
-                <a type="button" (click)="this.mainChat.threat = true">2 Antworten</a>
-                <span>Letzte Antwort 21:30 Uhr</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="message-time">
-        <hr>
-        <p class="message-details-border">Heute</p>
-        <hr>
-    </div>
-
-    <div class="sent-user">
-        <div class="sent-message">
-            <p>
-                <span class="sent-message-time">21:30 Uhr</span>
-                <span class="sent-user-name">Frederick Beck</span>
-            </p>
-            <p class="sent-message-text">
-                hello! sdafkhaspf
-                asfaf adfa sadfa
-            </p>
-            <div class="sent-message-feedback">
-                <p class="message-details-border">emoji 1</p>
-                <p class="message-details-border">emoji 2</p>
-                <img class="emoji-reaction" src="../../assets/imgs/main-chat/add_reaction.png" alt="Add reaction">
-            </div>
-        </div>
-        <img src="../../../assets/imgs/avatars/avatar1.png" alt="user-profile">
-    </div> -->
 </div>
