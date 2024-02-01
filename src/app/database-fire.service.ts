@@ -2,15 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Firestore, addDoc, collection, onSnapshot } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DocumentData } from 'rxfire/firestore/interfaces';
-
-
-interface User {
-  firstLastName: string;
-  email: string;
-  password: string;
-  checkData: boolean;
-  profileImg?: string;
-}
+import { User } from '../models/user.class';
 
 
 @Injectable({
@@ -46,7 +38,6 @@ export class DatabaseFireService {
       firstLastName: obj['firstLastName'],
       email: obj['email'],
       password: obj['password'],
-      checkData: false,
       profileImg: obj['profileImg']
     } as User;
   }

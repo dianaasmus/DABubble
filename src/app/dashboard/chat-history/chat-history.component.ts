@@ -2,7 +2,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { DatabaseFireService } from '../../database-fire.service';
 import { MessageRenderingService } from '../../message-rendering.service';
-import { Message } from '../../models/message.class';
+import { Message } from '../../../models/message.class';
 import { UsersService } from '../../users.service';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { User } from '@angular/fire/auth';
