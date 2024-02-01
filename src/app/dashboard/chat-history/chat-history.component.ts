@@ -1,11 +1,9 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { DatabaseFireService } from '../../database-fire.service';
-import { MessageRenderingService } from '../../message-rendering.service';
 import { Message } from '../../../models/message.class';
+import { MessageRenderingService } from '../../message-rendering.service';
 import { UsersService } from '../../users.service';
 import { MainChatComponent } from '../main-chat/main-chat.component';
-import { User } from '@angular/fire/auth';
 
 
 @Component({
@@ -23,7 +21,7 @@ export class ChatHistoryComponent {
   users: any;
 
 
-  constructor(public mainChat: MainChatComponent, public usersService: UsersService, public messagesServ: MessageRenderingService, public database: DatabaseFireService) {
+  constructor(public mainChat: MainChatComponent, public usersService: UsersService, public messagesServ: MessageRenderingService, public usersServ: UsersService) {
   }
 
 
@@ -44,7 +42,7 @@ export class ChatHistoryComponent {
 
 
   getUserImage(firstName: string, lastName: string): string | null {
-    this.users = this.database.users;
+    this.users = this.usersServ.users;
     const messageUser = this.users.find((user: any) => user.firstLastName === `${firstName} ${lastName}`);
     return messageUser?.profileImg || null;
   }

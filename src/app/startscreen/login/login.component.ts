@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DatabaseFireService } from '../../database-fire.service';
+import { UsersService } from '../../users.service';
 
 
 @Component({
@@ -18,14 +18,14 @@ export class LoginComponent {
     password: new FormControl()
   });
 
-  constructor(private database: DatabaseFireService, private router: Router) { }
+  constructor(private usersServ: UsersService, private router: Router) { }
 
 
   submitForm(e: any) {
     e.preventDefault();
     const enteredEmail = this.loginUser.get('email')?.value;
     const enteredPassword = this.loginUser.get('password')?.value;
-    const userExists = this.database.users.find(user => user.email === enteredEmail);
+    const userExists = this.usersServ.users.find(user => user.email === enteredEmail);
 
     if (userExists) {
       if (userExists.password === enteredPassword) {

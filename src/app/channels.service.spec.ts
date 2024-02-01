@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DatabaseFireService } from './database-fire.service';
+import { ChannelsService } from './channels.service';
 
-describe('DatabaseFireService', () => {
-  let service: DatabaseFireService;
+describe('ChannelsService', () => {
+  let service: ChannelsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DatabaseFireService);
+    service = TestBed.inject(ChannelsService);
   });
 
   it('should be created', () => {

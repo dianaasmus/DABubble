@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DatabaseFireService } from '../../database-fire.service';
 import { DialogFeedbackComponent } from '../../dialog-feedback/dialog-feedback.component';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
+import { UsersService } from '../../users.service';
 
 
 @Component({
@@ -15,18 +15,18 @@ import { StartscreenComponent } from '../startscreen.component';
   styleUrl: './select-avatar.component.scss'
 })
 export class SelectAvatarComponent {
-  newUser = this.database.newUser;
+  newUser = this.usersServ.newUser;
   avatarSrc = '../../../assets/imgs/person.png';
 
 
-  constructor(public startscreen: StartscreenComponent, public database: DatabaseFireService, public dialog: MatDialog) { }
+  constructor(public startscreen: StartscreenComponent, public usersServ: UsersService, public dialog: MatDialog) { }
 
 
   createUser(e: Event): void {
     e.preventDefault();
     this.openFeedbackDialog('Konto erfolgreich erstellt!');
     this.newUser.get('profileImg')?.setValue(this.avatarSrc);
-    this.database.addUser();
+    this.usersServ.addUser();
     this.performActionsAfterDelay();
   }
 

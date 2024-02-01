@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DatabaseFireService } from '../../database-fire.service';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
+import { UsersService } from '../../users.service';
 
 
 
@@ -14,11 +14,11 @@ import { StartscreenComponent } from '../startscreen.component';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  checkData = this.database.checkData;
-  newUser = this.database.newUser;
+  checkData = this.usersServ.checkData;
+  newUser = this.usersServ.newUser;
 
 
-  constructor(public database: DatabaseFireService, public startscreen: StartscreenComponent) { }
+  constructor(public usersServ: UsersService, public startscreen: StartscreenComponent) { }
 
 
   submitForm(e: any) {

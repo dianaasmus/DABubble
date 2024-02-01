@@ -5,6 +5,7 @@ import { ThreatComponent } from '../chat-history/threat/threat.component';
 import { TextfieldComponent } from '../textfield/textfield.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';
+import { ChannelsService } from '../../channels.service';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class MainChatComponent {
   @ViewChild('scrollChatHistory', { static: true }) chatHistory!: ElementRef;
 
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public channelsServ: ChannelsService) {
+    channelsServ.getChannels()
+  }
 
 
   ngAfterViewChecked() {
