@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { DocumentData, Firestore, addDoc, collection, onSnapshot } from '@angular/fire/firestore';
+import { DocumentData, Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 import { Channel } from '../models/channel.class';
 
 @Injectable({

@@ -17,13 +17,11 @@
         </div>
     </div>
 
-    <!-- <div> -->
-        <div [style]="{'overflow-y': 'auto'}" #scrollChatHistory>
-            <app-chat-history></app-chat-history>
-        </div>
+    <div [style]="{'overflow-y': 'auto'}" #scrollChatHistory>
+        <app-chat-history></app-chat-history>
+    </div>
 
-        <app-textfield></app-textfield>
-    <!-- </div> -->
+    <app-textfield></app-textfield>
 </div>
 
 <app-threat *ngIf="threat"></app-threat>
