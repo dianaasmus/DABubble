@@ -6,7 +6,7 @@ import { Channel } from '../models/channel.class';
   providedIn: 'root'
 })
 export class ChannelsService {
-  currentUser: string = 'Frederick';
+  currentChannel: string = 'Entwicklerteam';
   firestore: Firestore = inject(Firestore);
   channels = [];
 
@@ -20,7 +20,7 @@ export class ChannelsService {
     return {
       id: obj['id'],
       name: obj['name'],
-      member: obj['member']
+      users: obj['users']
     };
   }
 

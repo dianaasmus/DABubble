@@ -6,12 +6,13 @@ import { TextfieldComponent } from '../textfield/textfield.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';
 import { ChannelsService } from '../../channels.service';
+import { ChatHeaderComponent } from '../chat-header/chat-header.component';
 
 
 @Component({
   selector: 'app-main-chat',
   standalone: true,
-  imports: [TextfieldComponent, ChatHistoryComponent, ThreatComponent, NgIf],
+  imports: [ChatHeaderComponent, TextfieldComponent, ChatHistoryComponent, ThreatComponent, NgIf],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss'
 })
@@ -20,7 +21,7 @@ export class MainChatComponent {
   @ViewChild('scrollChatHistory', { static: true }) chatHistory!: ElementRef;
 
 
-  constructor(public dialog: MatDialog, public channelsServ: ChannelsService) {
+  constructor(public channelsServ: ChannelsService) {
     channelsServ.getChannels()
   }
 
@@ -37,12 +38,12 @@ export class MainChatComponent {
   }
 
 
-  openSettings(channel: string) {
-    console.log(channel);
+  // openSettings(channel: string) {
+  //   console.log(channel);
     
-    this.dialog.open(DialogChannelSettingsComponent, {
-      panelClass: 'channel-settings-container',
-    });
-  }
+  //   this.dialog.open(DialogChannelSettingsComponent, {
+  //     panelClass: 'channel-settings-container',
+  //   });
+  // }
 
 }

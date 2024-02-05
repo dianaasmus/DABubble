@@ -1,5 +1,5 @@
 <div class="chat-textarea">
-    <textarea [(ngModel)]="textarea" name="textField" cols="30" rows="10"></textarea>
+    <textarea (keyup.enter)="sendMessage()" [(ngModel)]="textarea" name="textField" cols="30" rows="10"></textarea>
     <div class="textarea-addition">
         <div>
             <img src="../../../assets/imgs/main-chat/add (1).png" alt="Add Appendix">

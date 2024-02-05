@@ -1,0 +1,17 @@
+<div class="main-chat-header">
+    <div class="main-chat-channel" (click)="openSettings('Entwicklerteam')">
+        <img id="mainChatDropdown" src="../../../assets/imgs/main-chat/hashtag.png" alt="Hashtag">
+        <span>{{channelsServ.currentChannel}}</span>
+        <img class="arrow-drop-down" src="../../../assets/imgs/nav/arrow_drop_down.png" alt="Arrow Dropdown">
+    </div>
+
+    <div class="main-chat-users">
+        <div id="usersDisplay">
+            <img src="../../../assets/imgs/avatars/avatar1.png" alt="avatar1">
+            <img src="../../../assets/imgs/avatars/avatar2.png" alt="avatar2">
+            <img src="../../../assets/imgs/avatars/avatar3.png" alt="avatar3">
+        </div>
+        <span>{{ getChannelUsers().length }}</span>
+        <img class="add-user" src="../../../assets/imgs/main-chat/person_add.png" alt="Add Person">
+    </div>
+</div>

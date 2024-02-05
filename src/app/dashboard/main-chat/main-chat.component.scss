@@ -9,69 +9,6 @@
     position: relative;
 }
 
-.main-chat-header {
-    margin-bottom: auto;
-    box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.08);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    display: flex;
-    justify-content: space-between;
-    padding: 19px 30px;
-    background-color: white;
-}
-
-.main-chat-channel {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    font-weight: 600;
-    padding: 0 10px;
-
-    &:hover {
-        background-color: #ECEEFE;
-        border-radius: 25px;
-    }
-}
-
-.arrow-drop-down {
-    height: 30px;
-}
-
-#mainChatDropdown {
-    height: 15px;
-}
-
-.main-chat-users {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.add-user {
-    height: 23px;
-    cursor: pointer;
-    border-radius: 30px;
-    background-color: #ECEEFE;
-    padding: 3px;
-
-    &:hover {
-        filter: invert(28%) sepia(41%) saturate(3656%) hue-rotate(227deg) brightness(105%) contrast(89%);
-    }
-}
-
-#usersDisplay {
-    margin-right: 10px;
-
-    img {
-        border-radius: 100%;
-        border: 2px solid white;
-        margin-right: -10px;
-        height: 30px;
-    }
-}
-
 .main-and-threat {
     position: absolute;
     width: 100%;

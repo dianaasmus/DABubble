@@ -4,12 +4,13 @@ import { Message } from '../../../models/message.class';
 import { MessageRenderingService } from '../../message-rendering.service';
 import { UsersService } from '../../users.service';
 import { MainChatComponent } from '../main-chat/main-chat.component';
+import { User } from '../../../models/user.class';
 
 
 @Component({
   selector: 'app-chat-history',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass],
+  imports: [],
   templateUrl: './chat-history.component.html',
   styleUrl: './chat-history.component.scss'
 })
@@ -21,8 +22,7 @@ export class ChatHistoryComponent {
   users: any;
 
 
-  constructor(public mainChat: MainChatComponent, public usersService: UsersService, public messagesServ: MessageRenderingService, public usersServ: UsersService) {
-  }
+  constructor(public mainChat: MainChatComponent, public messagesServ: MessageRenderingService, public usersServ: UsersService) {}
 
 
   getChannelMessages(): Message[] | null {
