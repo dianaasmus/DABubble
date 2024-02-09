@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChannelsService } from '../../channels.service';
 import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';
 import { Channel } from '../../../models/channel.class';
+import { UsersService } from '../../users.service';
+import { User } from '../../../models/user.class';
 
 @Component({
   selector: 'app-chat-header',
@@ -12,16 +14,32 @@ import { Channel } from '../../../models/channel.class';
   styleUrl: './chat-header.component.scss'
 })
 export class ChatHeaderComponent {
-  users: any;
-  // usersCount!: Number;
+  channelUsers = [];
+  userData: any;
 
-  constructor(public dialog: MatDialog, public channelsServ: ChannelsService) {
-  }
+  constructor(public dialog: MatDialog, public channelsServ: ChannelsService, public usersServ: UsersService) {}
 
 
   ngAfterViewChecked() {
-    this.users = this.getChannelUsers();    
+    this.channelUsers = this.getChannelUsers();    
+    this.userData = this.getUserData();    
   }
+
+
+  getUserData(): User[] {
+    const userData: User[] = [];
+    if (this.channelUsers) {
+      this.channelUsers.forEach(channelUserId => {
+        const user = this.usersServ.users.find(user => user.id === channelUserId);
+        if (user) {
+          userData.push(user);
+        }
+      });
+    }
+    return userData;
+  }
+  
+  
 
 
   getChannelUsers() {
@@ -29,7 +47,7 @@ export class ChatHeaderComponent {
     const currentChannel = this.channelsServ.currentChannel;
   
     const foundChannel: any = allChannels.find((channel: Channel) => channel.name === currentChannel);
-  
+    
     return foundChannel ? foundChannel.users : [];
   }
   

@@ -34,15 +34,16 @@ export class UsersService {
   }
 
 
-  private setUserObject(obj: DocumentData): User {
+  private setUserObject(obj: DocumentData, docId: string): User {
     return {
+      id: docId || obj['id'],
       firstLastName: obj['firstLastName'],
       email: obj['email'],
       password: obj['password'],
       profileImg: obj['profileImg']
     } as User;
   }
-  
+
 
   async addUser() {
     try {
@@ -58,7 +59,11 @@ export class UsersService {
   private getUsers(): void {
     const ref = this.getSingleDocRef();
     onSnapshot(ref, (list) => {
-      this.users = list.docs.map((doc) => this.setUserObject(doc.data()));
+      this.users = list.docs.map((doc) => {
+        const docId = doc.id;
+        console.log(docId);
+        return this.setUserObject(doc.data(), docId);
+      });
       console.log(this.users);
     });
   }
@@ -67,5 +72,5 @@ export class UsersService {
   private getSingleDocRef() {
     return collection(this.firestore, 'users');
   }
-  
+
 }

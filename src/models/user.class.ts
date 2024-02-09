@@ -1,11 +1,12 @@
 export class User {
+    id: number;
     firstLastName: string;
     email: string;
     password: string;
     profileImg: string;
 
     constructor(obj?: any) {
-        // this.id = obj && obj.id ? obj.id : '';
+        this.id = obj && obj.id ? obj.id : '';
         this.firstLastName = obj && obj.firstLastName ? obj.firstLastName : '';
         this.email = obj && obj.email ? obj.email : '';
         this.password = obj && obj.password ? obj.password : '';
