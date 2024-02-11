@@ -17,12 +17,10 @@ export class ChatHeaderComponent {
   channelUsers = [];
   userData: any;
 
-  constructor(public dialog: MatDialog, public channelsServ: ChannelsService, public usersServ: UsersService) {}
-
-
-  ngAfterViewChecked() {
+  
+  constructor(public dialog: MatDialog, public channelsServ: ChannelsService, public usersServ: UsersService) {
     this.channelUsers = this.getChannelUsers();    
-    this.userData = this.getUserData();    
+    this.userData = this.getUserData(); 
   }
 
 
@@ -39,8 +37,6 @@ export class ChatHeaderComponent {
     return userData;
   }
   
-  
-
 
   getChannelUsers() {
     const allChannels = this.channelsServ.channels;
@@ -50,7 +46,6 @@ export class ChatHeaderComponent {
     
     return foundChannel ? foundChannel.users : [];
   }
-  
 
 
   openSettings(channel: string) {

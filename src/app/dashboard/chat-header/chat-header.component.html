@@ -7,8 +7,8 @@
 
     <div class="main-chat-users">
         <div id="usersDisplay">
-            @for (user of getUserData(); track user) {
-            <img src="{{ user.profileImg }}" alt="User Image">
+            @for (user of getUserData().slice(0, 3); track user) {
+            <img src="{{ user?.profileImg }}" alt="User Image">
             }
         </div>
         <span>{{ getChannelUsers().length }}</span>

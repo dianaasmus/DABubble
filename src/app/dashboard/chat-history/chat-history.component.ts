@@ -26,7 +26,7 @@ export class ChatHistoryComponent {
 
 
   getChannelMessages(): Message[] | null {
-    if (this.messagesServ.messages && this.messagesServ.messages.length > 0) {
+    if (this.messagesServ.messages && this.messagesServ.messages.length > 0) {      
       return this.messagesServ.messages;
     } else {
       return null;
@@ -41,10 +41,10 @@ export class ChatHistoryComponent {
   }
 
 
-  getUserImage(firstName: string, lastName: string): string | null {
+  getUserImage(firstLastName: string): string {
     this.users = this.usersServ.users;
-    const messageUser = this.users.find((user: any) => user.firstLastName === `${firstName} ${lastName}`);
-    return messageUser?.profileImg || null;
+    const messageUser = this.users.find((user: any) => user.firstLastName === `${firstLastName}`);
+    return messageUser?.profileImg;
   }
   
 }

@@ -3,16 +3,19 @@ import { Firestore, addDoc, collection, onSnapshot } from '@angular/fire/firesto
 import { FormBuilder, Validators } from '@angular/forms';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { User } from '../models/user.class';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  currentUser: string = 'Frederick';
+  currentUser!: User;
   firestore: Firestore = inject(Firestore);
   users: User[] = [];
   checkData!: boolean;
+  urlId!: any;
+
 
   newUser = this.fb.group({
     firstLastName: ['', [Validators.required, Validators.pattern(/^[A-Za-zÄäÖöÜüß ]+$/)]],
@@ -23,8 +26,34 @@ export class UsersService {
   });
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private route: Router) {
     this.getUsers();
+    this.getCurrentUser();
+  }
+
+  initUsers() {
+    debugger;
+    this.getUsers();
+    this.getUrlId();
+    this.getCurrentUser();
+    return this.currentUser;
+  }
+
+
+  getUrlId() {
+    const url = this.route.url;
+    const urlSplit = url.split("/");
+    this.urlId = urlSplit[1];
+  }
+
+
+  getCurrentUser() {
+    this.users.forEach(user => {
+      if (user.id === this.urlId) {
+        this.currentUser = user;
+        console.log(user);
+      }
+    });
   }
 
 
@@ -56,7 +85,7 @@ export class UsersService {
   }
 
 
-  private getUsers(): void {
+  getUsers(): void {
     const ref = this.getSingleDocRef();
     onSnapshot(ref, (list) => {
       this.users = list.docs.map((doc) => {
@@ -64,7 +93,8 @@ export class UsersService {
         console.log(docId);
         return this.setUserObject(doc.data(), docId);
       });
-      console.log(this.users);
+      debugger;
+      this.getUrlId();
     });
   }
 

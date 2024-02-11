@@ -1,4 +1,4 @@
-<div class="chat-textarea">
+<form class="chat-textarea" (submit)="messageServ.addMessage()">
     <textarea (keyup.enter)="sendMessage()" [(ngModel)]="textarea" name="textField" cols="30" rows="10"></textarea>
     <div class="textarea-addition">
         <div>
@@ -7,8 +7,8 @@
             <img src="../../../assets/imgs/main-chat/sentiment_satisfied.png" alt="Emoji">
             <img src="../../../assets/imgs/main-chat/alternate_email.png" alt="Email">
         </div>
-        <a (click)="sendMessage()">
+        <button type="sumbit">
             <img class="send-icon" src="../../../assets/imgs/main-chat/Send icon.png" alt="Send">
-        </a>
+        </button>
     </div>
-</div>
+</form>

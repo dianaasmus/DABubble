@@ -18,7 +18,13 @@ export class LoginComponent {
     password: new FormControl()
   });
 
+
   constructor(private usersServ: UsersService, private router: Router) { }
+
+
+  setRouterId() {
+    this.router.navigateByUrl('' + this.usersServ.currentUser.id);
+  }
 
 
   submitForm(e: any) {
@@ -29,7 +35,8 @@ export class LoginComponent {
 
     if (userExists) {
       if (userExists.password === enteredPassword) {
-        this.redirectDashboard();
+        this.usersServ.currentUser = userExists;
+        this.setRouterId();
       } else {
         this.loginFeedback();
       }
@@ -38,7 +45,7 @@ export class LoginComponent {
     }
   }
 
-  
+
   private loginFeedback() {
     this.loginFeedbacks = 'Email und Passwort stimmen nicht überein.';
   }
@@ -47,7 +54,7 @@ export class LoginComponent {
   onFeedbackChange() {
     this.loginFeedbacks = '';
   }
-  
+
 
   redirectDashboard() {
     this.router.navigate(['/dashboard']);

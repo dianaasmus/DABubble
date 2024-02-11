@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, doc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, doc, onSnapshot } from '@angular/fire/firestore';
 import { Message } from '../models/message.class';
 
 @Injectable({
@@ -12,6 +12,19 @@ export class MessageRenderingService {
 
   constructor() {
     this.subProductsList();    
+  }
+
+
+  addMessage() {
+    // try {
+    //   // const newUser = this.newUser.value;
+    //   const collectionRef = this.getChannelMessages();
+    //   await addDoc(collectionRef, newUser);
+    // } catch (err) {
+    //   console.error(err);
+    // }
+    console.log('send');
+    
   }
 
 
@@ -33,7 +46,7 @@ export class MessageRenderingService {
     let messagesRef = this.getChannelMessages();
 
     onSnapshot(messagesRef, (list) => {
-      list.forEach((element) => {
+      list.forEach((element) => {        
         this.messages.push(this.setMessageObject(element.data(), element.id));
       });
     });
@@ -42,9 +55,8 @@ export class MessageRenderingService {
 
   private setMessageObject(obj: any, id: string) {
     return {
-      id: obj.id,
-      firstName: obj.firstName,
-      lastName: obj.lastName,
+      id: obj.id || id,
+      firstLastName: obj.firstLastName,
       message: obj.message,
       time: obj.time
     };
