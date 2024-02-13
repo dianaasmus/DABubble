@@ -6,8 +6,8 @@
 <input id="headerInput" type="text" placeholder="Code learning durchsuchen">
 
 <div class="logged-user-container" (click)="openDrodown()">
-    <span>{{ currentUser.firstLastName }}</span>
-    <img id="headerProfile" src="{{ currentUser.profileImg }}" alt="Profile Image">
+    @if (currentUser) {<span>{{ currentUser.firstLastName }}</span>}
+    @if (currentUser) {<img id="headerProfile" src="{{ currentUser.profileImg }}" alt="Profile Image">}
     <hr>
     <img src="../../../assets/imgs/keyboard_arrow_down.png" alt="Arrow Dropdown">
 </div>

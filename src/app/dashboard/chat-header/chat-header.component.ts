@@ -25,6 +25,7 @@ export class ChatHeaderComponent {
 
 
   getUserData(): User[] {
+    // debugger;
     const userData: User[] = [];
     if (this.channelUsers) {
       this.channelUsers.forEach(channelUserId => {
