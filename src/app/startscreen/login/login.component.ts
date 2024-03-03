@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../users.service';
+import { User } from '../../../models/user.class';
 
 
 @Component({
@@ -17,6 +18,11 @@ export class LoginComponent {
     email: new FormControl(),
     password: new FormControl()
   });
+
+  guestUser : User = {
+    firstLastName: 'Gast',
+    profileImg: '../../../assets/imgs/person.png'
+  }
 
 
   constructor(private usersServ: UsersService, private router: Router) { }
@@ -57,6 +63,8 @@ export class LoginComponent {
 
 
   redirectDashboard() {
+    debugger;
+    this.usersServ.currentUser = this.guestUser;
     this.router.navigate(['/dashboard']);
   }
 }

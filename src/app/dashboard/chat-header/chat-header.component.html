@@ -6,11 +6,11 @@
     </div>
 
     <div class="main-chat-users">
-        <div id="usersDisplay">
-            @for (user of getUserData().slice(0, 3); track user) {
+        @if (userData) {<div id="usersDisplay">
+            @for (user of userData.slice(0, 3); track user) {
             <img src="{{ user?.profileImg }}" alt="User Image">
             }
-        </div>
+        </div>}
         <span>{{ getChannelUsers().length }}</span>
         <img class="add-user" src="../../../assets/imgs/main-chat/person_add.png" alt="Add Person">
     </div>

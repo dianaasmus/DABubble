@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { DocumentData, Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 import { Channel } from '../models/channel.class';
+import { retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class ChannelsService {
     onSnapshot(ref, (list: any) => {
       this.channels = list.docs.map((doc: any) => this.setUserObject(doc.data()));
       console.log(this.channels);
-      
+      return this.channels;
     });
   }
 

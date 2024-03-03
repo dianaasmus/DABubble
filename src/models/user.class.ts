@@ -1,9 +1,9 @@
 export class User {
-    id: number;
+    id?: number;
     firstLastName: string;
-    email: string;
-    password: string;
-    profileImg: string;
+    email?: string;
+    password?: string;
+    profileImg?: string;
 
     constructor(obj?: any) {
         this.id = obj && obj.id ? obj.id : '';

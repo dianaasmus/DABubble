@@ -12,8 +12,8 @@ import { DialogProfileDropdownComponent } from '../dialog-profile-dropdown/dialo
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  currentUser!: any;
-  users: any;
+  currentUser!: User;
+  users!: any;
 
 
   constructor(public dialog: MatDialog, public usersServ: UsersService) {
@@ -27,6 +27,8 @@ export class HeaderComponent {
 
   async loadUsers() {
     await this.usersServ.getUsers();
+    console.log(this.currentUser);
+    
     this.users = this.usersServ.users;
     this.currentUser = this.usersServ.getCurrentUser();
   }

@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, getDocs, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { User } from '../models/user.class';
-import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Injectable({
@@ -28,6 +28,7 @@ export class UsersService {
 
   constructor(private fb: FormBuilder, private route: Router) {
     this.getUsers();
+    this.getUrlId();
     this.currentUser = this.getCurrentUser();
   }
 
@@ -40,6 +41,20 @@ export class UsersService {
 
 
   getCurrentUser() {
+    // debugger;
+    if (this.urlId == 'dashboard') {
+      if (this.currentUser.firstLastName !== 'Gast') {
+        this.returnCurrentUser();
+      } else {
+        return this.currentUser;
+      }
+    } else {
+      this.returnCurrentUser();
+    }
+  }
+
+
+  returnCurrentUser() {
     this.currentUser = this.users.find(user => user.id === this.urlId);
     return this.currentUser;
   }
@@ -80,6 +95,8 @@ export class UsersService {
       const docId = doc.id;
       return this.setUserObject(doc.data(), docId);
     });
+    console.log(this.users);
+
     this.getUrlId();
   }
 

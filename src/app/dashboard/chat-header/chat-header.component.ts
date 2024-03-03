@@ -20,30 +20,36 @@ export class ChatHeaderComponent {
   
   constructor(public dialog: MatDialog, public channelsServ: ChannelsService, public usersServ: UsersService) {
     this.channelUsers = this.getChannelUsers();    
-    this.userData = this.getUserData(); 
+    // this.userData = this.getUserData(); 
   }
 
 
-  getUserData(): User[] {
-    // debugger;
+  getUserData() {
     const userData: User[] = [];
     if (this.channelUsers) {
+    // debugger;
+
       this.channelUsers.forEach(channelUserId => {
+
         const user = this.usersServ.users.find(user => user.id === channelUserId);
         if (user) {
+          
           userData.push(user);
         }
       });
     }
-    return userData;
+    // return userData;
   }
   
 
   getChannelUsers() {
+    // debugger;
     const allChannels = this.channelsServ.channels;
     const currentChannel = this.channelsServ.currentChannel;
   
     const foundChannel: any = allChannels.find((channel: Channel) => channel.name === currentChannel);
+
+    this.getUserData();
     
     return foundChannel ? foundChannel.users : [];
   }
