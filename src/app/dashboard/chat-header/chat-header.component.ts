@@ -5,6 +5,7 @@ import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialo
 import { Channel } from '../../../models/channel.class';
 import { UsersService } from '../../users.service';
 import { User } from '../../../models/user.class';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-chat-header',
@@ -20,30 +21,39 @@ export class ChatHeaderComponent {
   
   constructor(public dialog: MatDialog, public channelsServ: ChannelsService, public usersServ: UsersService) {
     this.channelUsers = this.getChannelUsers();    
-    // this.userData = this.getUserData(); 
+    this.userData = this.getUserData(); 
   }
 
 
   getUserData() {
     const userData: User[] = [];
     if (this.channelUsers) {
-    // debugger;
+    debugger;
 
       this.channelUsers.forEach(channelUserId => {
 
-        const user = this.usersServ.users.find(user => user.id === channelUserId);
+        const user = this.returnUserId(channelUserId);
         if (user) {
           
-          userData.push(user);
+          // userData.push(user);
+          console.log(userData);
+          console.log(user);
+          
         }
       });
     }
     // return userData;
   }
+
+
+  returnUserId(channelUserId: string) {
+    return this.usersServ.users$.pipe(
+      map(users => users.find(user => user.id === channelUserId))
+    );
+  }
   
 
   getChannelUsers() {
-    // debugger;
     const allChannels = this.channelsServ.channels;
     const currentChannel = this.channelsServ.currentChannel;
   

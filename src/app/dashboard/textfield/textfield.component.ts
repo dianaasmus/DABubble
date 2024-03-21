@@ -1,31 +1,44 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageRenderingService } from '../../message-rendering.service';
 import { UsersService } from '../../users.service';
+import { Message } from '../../../models/message.class';
 
 @Component({
   selector: 'app-textfield',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './textfield.component.html',
   styleUrl: './textfield.component.scss'
 })
 export class TextfieldComponent {
   textarea!: any;
 
+
   constructor(public messageServ: MessageRenderingService, private fb: FormBuilder, private usersServ: UsersService) {}
 
 
   messageDetails = this.fb.group({
-    firstLastName: this.usersServ.currentUser,
-    email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
-    password: ['', [Validators.required, Validators.pattern(/^(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/)]],
-    checkData: [false, Validators.requiredTrue],
-    profileImg: ['', undefined]
+    message: [this.textarea, [Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]]
   });
 
+  // messageDetails = {
+  //   user: this.usersServ.currentUser,
+  //   message: this.textarea
+  // };
+
   sendMessage() {
-    console.log(this.usersServ.currentUser);
+    const messageToSend = {
+      user: this.usersServ.currentUser.id,
+      message: this.messageDetails.value.message,
+      time: Date.now() // Zeitstempel für die aktuelle Zeit
+    };
+  
+    // console.log(this.usersServ.currentUser);
+    // console.log(messageToSend);
+    console.log(this.textarea);
+    this.messageServ.addMessage(messageToSend);
+    
     
     // console.log(this.textarea);
     // document.getElementById('chatHistory')!.innerHTML += `

@@ -82,3 +82,9 @@ body {
 
     }
 }
+
+.guestClass::ng-deep {
+    padding: 3px;
+    background-color: brown;
+    box-sizing: border-box;
+}

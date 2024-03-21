@@ -20,13 +20,46 @@ export class ChatHistoryComponent {
   allChatMessage = this.getChannelMessages();
   currentChat = 'Entwicklerteam';
   users: any;
+  // users: User[] = [];
+  userName: any;
+  userImg: any;
+
+  constructor(public mainChat: MainChatComponent, public messagesServ: MessageRenderingService, public usersServ: UsersService) { }
 
 
-  constructor(public mainChat: MainChatComponent, public messagesServ: MessageRenderingService, public usersServ: UsersService) {}
+  ngOnInit(): void {
+    this.usersServ.users$.subscribe(users => {
+      this.users = users;
+      // Führen Sie hier die gewünschte Logik mit den Benutzern aus
+    });
+  }
+
+
+  sentMessageUserImg(id: any) {
+    // debugger;
+    let user = this.sentMessageUser(id);
+    if (this.users) {
+      debugger;
+      // const user = this.users.find((user: User) => user.id === id);
+      return user.profileImg;
+    }
+  }
+
+
+  sentMessageUser(id: any) {
+    // debugger;
+    if (this.users) {
+      // debugger;
+      const user = this.users.find((user: User) => user.id === id);
+      this.userName = user.firstLastName;
+      this.userImg = user.profileImg;
+      return user.firstLastName;
+    }
+  }
 
 
   getChannelMessages(): Message[] | null {
-    if (this.messagesServ.messages && this.messagesServ.messages.length > 0) {      
+    if (this.messagesServ.messages && this.messagesServ.messages.length > 0) {
       return this.messagesServ.messages;
     } else {
       return null;
@@ -42,9 +75,9 @@ export class ChatHistoryComponent {
 
 
   getUserImage(firstLastName: string): string {
-    this.users = this.usersServ.users;
+    this.users = this.usersServ.users$;
     const messageUser = this.users.find((user: any) => user.firstLastName === `${firstLastName}`);
     return messageUser?.profileImg;
   }
-  
+
 }

@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { User } from '../models/user.class';
+import { BehaviorSubject, map } from 'rxjs';
 
 
 @Injectable({
@@ -12,9 +13,11 @@ import { User } from '../models/user.class';
 export class UsersService {
   currentUser!: any;
   firestore: Firestore = inject(Firestore);
-  users: User[] = [];
+  // users: User[] = [];
   checkData!: boolean;
   urlId!: any;
+  private usersSubject = new BehaviorSubject<User[]>([]);
+  users$ = this.usersSubject.asObservable();
 
 
   newUser = this.fb.group({
@@ -29,7 +32,7 @@ export class UsersService {
   constructor(private fb: FormBuilder, private route: Router) {
     this.getUsers();
     this.getUrlId();
-    this.currentUser = this.getCurrentUser();
+    this.getCurrentUser();
   }
 
 
@@ -41,22 +44,21 @@ export class UsersService {
 
 
   getCurrentUser() {
-    // debugger;
-    if (this.urlId == 'dashboard') {
-      if (this.currentUser.firstLastName !== 'Gast') {
-        this.returnCurrentUser();
-      } else {
-        return this.currentUser;
+    this.getUsers();
+
+    this.returnCurrentUser().subscribe(currentUser => {
+      if (currentUser !== null) {
+        this.currentUser = currentUser;
+        console.log(this.currentUser);
       }
-    } else {
-      this.returnCurrentUser();
-    }
+    });
   }
 
 
   returnCurrentUser() {
-    this.currentUser = this.users.find(user => user.id === this.urlId);
-    return this.currentUser;
+    return this.users$.pipe(
+      map(users => users.find(user => user.id === this.urlId) || null)
+    );
   }
 
 
@@ -91,15 +93,13 @@ export class UsersService {
   async getUsers(): Promise<void> {
     const ref = this.getSingleDocRef();
     const list = await getDocs(ref);
-    this.users = list.docs.map((doc) => {
+    const users = list.docs.map((doc) => {
       const docId = doc.id;
       return this.setUserObject(doc.data(), docId);
     });
-    console.log(this.users);
-
+    this.usersSubject.next(users);
     this.getUrlId();
   }
-
 
 
   private getSingleDocRef() {

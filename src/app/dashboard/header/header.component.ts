@@ -16,8 +16,7 @@ export class HeaderComponent {
   users!: any;
 
 
-  constructor(public dialog: MatDialog, public usersServ: UsersService) {
-  }
+  constructor(public dialog: MatDialog, public usersServ: UsersService) {}
 
 
   ngOnInit() {
@@ -26,13 +25,15 @@ export class HeaderComponent {
 
 
   async loadUsers() {
-    await this.usersServ.getUsers();
-    console.log(this.currentUser);
-    
-    this.users = this.usersServ.users;
-    this.currentUser = this.usersServ.getCurrentUser();
+    await this.usersServ.getUsers();  
+    this.usersServ.returnCurrentUser().subscribe(currentUser => {
+      if (currentUser !== null) {
+        this.currentUser = currentUser;
+        console.log(this.currentUser);
+      }
+    });
   }
-
+  
 
   reloadPage() {
     window.location.reload();

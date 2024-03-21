@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../users.service';
 import { User } from '../../../models/user.class';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -37,18 +38,28 @@ export class LoginComponent {
     e.preventDefault();
     const enteredEmail = this.loginUser.get('email')?.value;
     const enteredPassword = this.loginUser.get('password')?.value;
-    const userExists = this.usersServ.users.find(user => user.email === enteredEmail);
+    const userExists = this.returnUserEmail(enteredEmail);
 
+    debugger;
     if (userExists) {
-      if (userExists.password === enteredPassword) {
-        this.usersServ.currentUser = userExists;
-        this.setRouterId();
-      } else {
-        this.loginFeedback();
-      }
+      console.log(userExists);
+      
+      // if (userExists.password === enteredPassword) {
+      //   this.usersServ.currentUser = userExists;
+      //   this.setRouterId();
+      // } else {
+      //   this.loginFeedback();
+      // }
     } else {
       this.loginFeedback();
     }
+  }
+
+
+  returnUserEmail(enteredEmail: string) {
+    return this.usersServ.users$.pipe(
+      map(users => users.find(user => user.email === enteredEmail) || null)
+    );
   }
 
 

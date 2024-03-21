@@ -60,3 +60,9 @@
         filter: invert(28%) sepia(41%) saturate(3656%) hue-rotate(227deg) brightness(105%) contrast(89%);
     }
 }
+
+.guestClass::ng-deep {
+    padding: 3px;
+    background-color: brown;
+    box-sizing: border-box;
+}
