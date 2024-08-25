@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -10,9 +10,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogFeedbackComponent {
   feedbackText!: string;
+  @Input() message: string = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string }) {
-    this.feedbackText = data.message;
-  }
+  constructor() {}
 
 }

@@ -1,8 +1,7 @@
 .feedback-container {
     position: fixed;
-    bottom: 5%;
-    right: 5%;
-    height: 80px;
+    bottom: 2%;
+    right: 2%;
     display: flex;
     align-items: center;
     background-color: #44d;
@@ -13,7 +12,7 @@
     padding: 0 20px;
     overflow-x: hidden;
     transform: translateX(1000px);
-    animation: fadeInFeedback 2000ms ease-in-out forwards;
+    animation: fadeInFeedback 3000ms ease-in-out forwards;
 
     h2 {
         font-size: 1rem;

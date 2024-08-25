@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ChannelsService } from '../../channels.service';
-import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';
-import { Channel } from '../../../models/channel.class';
-import { UsersService } from '../../users.service';
-import { User } from '../../../models/user.class';
 import { map } from 'rxjs';
+import { User } from '../../../models/user.class';
+import { ChannelsService } from '../../channels.service';
+import { UsersService } from '../../users.service';
+import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';
 
 @Component({
   selector: 'app-chat-header',
@@ -15,34 +14,39 @@ import { map } from 'rxjs';
   styleUrl: './chat-header.component.scss'
 })
 export class ChatHeaderComponent {
-  channelUsers = [];
+  channelUsers = {};
   userData: any;
 
-  
-  constructor(public dialog: MatDialog, public channelsServ: ChannelsService, public usersServ: UsersService) {
-    this.channelUsers = this.getChannelUsers();    
-    this.userData = this.getUserData(); 
+
+  constructor(public dialog: MatDialog, public channelsServ: ChannelsService, public usersServ: UsersService) { }
+
+  ngOnInit(): void {
+    this.getChannelUsers();
+    // this.getUserData();
   }
 
 
   getUserData() {
-    const userData: User[] = [];
     if (this.channelUsers) {
-    debugger;
-
-      this.channelUsers.forEach(channelUserId => {
-
-        const user = this.returnUserId(channelUserId);
-        if (user) {
-          
-          // userData.push(user);
-          console.log(userData);
-          console.log(user);
-          
-        }
-      });
+      // this.channelUsers.forEach(channelUserId => {
+      //   const user$ = this.returnUserId(channelUserId);
+      //   user$.subscribe(user => {
+      //     if (user) {
+      //       this.userData.push(user);
+      //       console.log(user);
+      //     }
+      //   });
+      // });
+      for (let channelUserId in this.channelUsers) {
+        const user$ = this.returnUserId(channelUserId);
+        user$.subscribe(user => {
+          if (user) {
+            this.userData.push(user);
+            console.log(user);
+          }
+        });
+      }
     }
-    // return userData;
   }
 
 
@@ -51,17 +55,34 @@ export class ChatHeaderComponent {
       map(users => users.find(user => user.id === channelUserId))
     );
   }
-  
+
 
   getChannelUsers() {
-    const allChannels = this.channelsServ.channels;
-    const currentChannel = this.channelsServ.currentChannel;
-  
-    const foundChannel: any = allChannels.find((channel: Channel) => channel.name === currentChannel);
+    // debugger;
+    this.channelsServ.channels$.subscribe(allChannels => {
+      const currentChannel = this.channelsServ.currentChannel;
+      const foundChannel = allChannels.find(channel => channel.name === currentChannel);
+      if (foundChannel) {
+        // debugger;
+        console.log(this.channelUsers);
+        console.log(allChannels[0].users);
+        console.log(foundChannel.users);
 
-    this.getUserData();
-    
-    return foundChannel ? foundChannel.users : [];
+        this.channelUsers = allChannels[0].users;
+        this.getUserData();
+
+        return Object.keys(this.channelUsers).length;
+      } else {
+        return null;
+      }
+    });
+  }
+
+
+  returnCurrentChannel(currentChannel: string) {
+    return this.channelsServ.channels$.pipe(
+      map(channel => channel.find(channel => channel.name === currentChannel) || null)
+    );
   }
 
 

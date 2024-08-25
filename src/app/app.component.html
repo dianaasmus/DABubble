@@ -1,1 +1,5 @@
 <router-outlet></router-outlet>
+
+@if (isFeedback) {
+<app-dialog-feedback [message]="message"></app-dialog-feedback>
+}

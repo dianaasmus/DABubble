@@ -1,36 +1,39 @@
 <form [formGroup]="newUser" class="signUp" (ngSubmit)="submitForm($event)">
 
-    <a (click)="toggleSignup()" class="back-to-login"></a>
+    <button type="button" (click)="toggleSignup()" class="back-to-login">
+        <span class="sr-only">back to login</span>
+    </button>
 
     <h1>Konto erstellen</h1>
 
-    <p>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.</p>
-
     <div class="input-error-container">
-        <input id="signUpFirstLastName" type="text" pattern="[A-Za-zÄäÖöÜüß\s]+" name="firstLastName" formControlName="firstLastName"
-            placeholder="Vor- und Nachname" autocomplete="on" [class.red-border]="newUser.get('firstLastName')?.invalid && newUser.get('firstLastName')?.touched" required>
+        <label data-required for="signUpFirstLastName">Vor- und Nachname</label>
+        <input id="signUpFirstLastName" type="text" pattern="[A-Za-zÄäÖöÜüß\s]+" name="signUpFirstLastName" formControlName="firstLastName"
+            placeholder="John Doe" autocomplete="name" [class.red-border]="newUser.get('firstLastName')?.invalid && newUser.get('firstLastName')?.touched" required>
         @if (newUser.get('firstLastName')?.invalid && newUser.get('firstLastName')?.touched) {<p>
             Bitte geben Sie Ihren Vor- und Nachnamen ein.
         </p>}
     </div>
 
     <div class="input-error-container">
-        <input id="signUpEmail" type="email" name="email" formControlName="email" placeholder="beispielname@email.de"
-            autocomplete="on" [class.red-border]="newUser.get('email')?.invalid && newUser.get('email')?.touched" required>
+        <label data-required for="signUpEmail">E-Mail</label>
+        <input id="signUpEmail" type="email" name="signUpEmail" formControlName="email" placeholder="john.doe@eg.de"
+            autocomplete="email" [class.red-border]="newUser.get('email')?.invalid && newUser.get('email')?.touched" required>
         @if (newUser.get('email')?.invalid && newUser.get('email')?.touched) {<p>
             Bitte geben Sie eine gültige E-Mail-Adresse ein.
         </p> }
     </div>
 
     <div class="input-error-container">
-        <input id="signUpPassword" type="password" name="password" formControlName="password" placeholder="Password"
-            autocomplete="on" [class.red-border]="newUser.get('password')?.invalid && newUser.get('password')?.touched" required>
+        <label data-required for="signUpPassword">Passwort</label>
+        <input id="signUpPassword" type="password" name="signUpPassword" formControlName="password" placeholder="********"
+            autocomplete="password" [class.red-border]="newUser.get('password')?.invalid && newUser.get('password')?.touched" required>
         @if (newUser.get('password')?.invalid && newUser.get('password')?.touched) {<p>
-            Bitte geben Sie ein gültiges Passwort ein.
+            Bitte geben Sie ein Passwort mit mind. 8 Zeichen und einem Sonderzeichen ein.
         </p> }
     </div>
 
-    <label>
+    <label class="input-error-container">
         <input id="checkbox" type="checkbox" name="myCheckbox" (change)="usersServ.onCheckboxChange($event)">
         Ich stimme der
         <a (click)="toggleDataProtection()">Datenschutzerklärung</a>

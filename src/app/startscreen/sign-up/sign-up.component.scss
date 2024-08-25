@@ -3,7 +3,7 @@
     background: var(--White, #FFF);
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
     height: fit-content;
-    max-width: 400px;
+    max-width: 480px;
     width: 100%;
     position: absolute;
     top: 50%;
@@ -31,7 +31,7 @@
 
     input {
         padding: 13px 20px 13px 70px;
-        width: 350px;
+        width: 100%;
         box-sizing: border-box;
         border-radius: 30px;
         background-color: #ECEEFE;
@@ -51,6 +51,7 @@
 
 .input-error-container {
     position: relative;
+    width: 100%;
 
     p {
         position: absolute;

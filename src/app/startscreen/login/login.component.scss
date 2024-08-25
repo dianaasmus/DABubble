@@ -38,22 +38,6 @@
         border: 1px solid transparent;
     }
 
-    #email {
-        background-image: url('../../../assets/imgs/mail.png');
-        background-repeat: no-repeat;
-        background-position-x: 25px;
-        background-position-y: 12px;
-        background-size: 20px;
-    }
-
-    #password {
-        background-image: url('../../../assets/imgs/lock.png');
-        background-repeat: no-repeat;
-        background-position-x: 25px;
-        background-position-y: 12px;
-        background-size: 20px;
-    }
-
     a {
         text-decoration: none;
 
@@ -63,6 +47,22 @@
             padding: 0 9px;
         }
     }
+}
+
+#loginEmail {
+    background-image: url('../../../assets/imgs/mail.png');
+    background-repeat: no-repeat;
+    background-position-x: 25px;
+    background-position-y: 12px;
+    background-size: 20px;
+}
+
+#loginPassword {
+    background-image: url('../../../assets/imgs/lock.png');
+    background-repeat: no-repeat;
+    background-position-x: 25px;
+    background-position-y: 12px;
+    background-size: 20px;
 }
 
 .or-container {

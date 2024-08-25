@@ -2,10 +2,9 @@
 
     <h1>Anmeldung</h1>
 
-    <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
-
     <div class="input-error-container">
-        <input id="signUpEmail" type="email" name="email" formControlName="email" placeholder="beispielname@email.de"
+        <label data-required for="loginEmail">E-Mail</label>
+        <input id="loginEmail" type="email" name="loginEmail" formControlName="email" placeholder="beispielname@email.de"
             autocomplete="on" [class.red-border]="loginUser.get('email')?.invalid && loginUser.get('email')?.touched"
             (change)="onFeedbackChange()" required>
         @if (loginUser.get('email')?.invalid && loginUser.get('email')?.touched) {<p>
@@ -17,7 +16,8 @@
     </div>
 
     <div class="input-error-container">
-        <input id="signUpPassword" type="password" name="password" formControlName="password" placeholder="Password"
+        <label data-required for="loginPassword">Passwort</label>
+        <input id="loginPassword" type="password" name="loginPassword" formControlName="password" placeholder="Password"
             autocomplete="on" (change)="onFeedbackChange()"
             [class.red-border]="loginUser.get('password')?.invalid && loginUser.get('password')?.touched" required>
         @if (loginUser.get('password')?.invalid && loginUser.get('password')?.touched) {<p>

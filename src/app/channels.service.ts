@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { DocumentData, Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 import { Channel } from '../models/channel.class';
-import { retry } from 'rxjs';
+import { BehaviorSubject, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,9 @@ import { retry } from 'rxjs';
 export class ChannelsService {
   currentChannel: string = 'Entwicklerteam';
   firestore: Firestore = inject(Firestore);
-  channels = [];
+  // channels = [];
+  private channelsSubject = new BehaviorSubject<Channel[]>([]);
+  channels$ = this.channelsSubject.asObservable();
 
 
   constructor() {
@@ -37,12 +39,20 @@ export class ChannelsService {
   // }
 
 
+  // getChannels(): void {
+  //   const ref = this.getSingleDocRef();
+  //   onSnapshot(ref, (list: any) => {
+  //     this.channels = list.docs.map((doc: any) => this.setUserObject(doc.data()));
+  //     console.log(this.channels);
+  //     return this.channels;
+  //   });
+  // }
+
   getChannels(): void {
     const ref = this.getSingleDocRef();
     onSnapshot(ref, (list: any) => {
-      this.channels = list.docs.map((doc: any) => this.setUserObject(doc.data()));
-      console.log(this.channels);
-      return this.channels;
+      const channels = list.docs.map((doc: any) => this.setUserObject(doc.data()));
+      this.channelsSubject.next(channels); // Aktualisiert das BehaviorSubject mit den neuen Kanaldaten
     });
   }
 
