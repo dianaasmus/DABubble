@@ -6,7 +6,7 @@
         <label data-required for="loginEmail">E-Mail</label>
         <input id="loginEmail" type="email" name="loginEmail" formControlName="email" placeholder="beispielname@email.de"
             autocomplete="on" [class.red-border]="loginUser.get('email')?.invalid && loginUser.get('email')?.touched"
-            (change)="onFeedbackChange()" required>
+            (change)="loginFeedback()" (focus)="removeFeedback()" required>
         @if (loginUser.get('email')?.invalid && loginUser.get('email')?.touched) {<p>
             Bitte geben Sie eine gültige E-Mail-Adresse ein.
         </p>}
@@ -18,7 +18,7 @@
     <div class="input-error-container">
         <label data-required for="loginPassword">Passwort</label>
         <input id="loginPassword" type="password" name="loginPassword" formControlName="password" placeholder="Password"
-            autocomplete="on" (change)="onFeedbackChange()"
+            autocomplete="on" (focus)="removeFeedback()" (change)="onChangeFeedback($event)"
             [class.red-border]="loginUser.get('password')?.invalid && loginUser.get('password')?.touched" required>
         @if (loginUser.get('password')?.invalid && loginUser.get('password')?.touched) {<p>
             Bitte geben Sie ein gültiges Passwort ein.
