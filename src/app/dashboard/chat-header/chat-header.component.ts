@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs';
-import { User } from '../../../models/user.class';
 import { ChannelsService } from '../../channels.service';
 import { UsersService } from '../../users.service';
 import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';

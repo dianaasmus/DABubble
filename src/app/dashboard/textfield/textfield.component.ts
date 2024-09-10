@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageRenderingService } from '../../message-rendering.service';
 import { UsersService } from '../../users.service';
-import { Message } from '../../../models/message.class';
+import { Message } from '../../../models/message.interface';
 
 @Component({
   selector: 'app-textfield',

@@ -1,10 +1,10 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { Message } from '../../../models/message.class';
+import { Message } from '../../../models/message.interface';
 import { MessageRenderingService } from '../../message-rendering.service';
 import { UsersService } from '../../users.service';
 import { MainChatComponent } from '../main-chat/main-chat.component';
-import { User } from '../../../models/user.class';
+import { User } from '../../../models/user.interface';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class ChatHistoryComponent {
   // time = this.date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   allChatMessage = this.getChannelMessages();
   currentChat = 'Entwicklerteam';
-  users: any;
+  users: User[] = [];
   // users: User[] = [];
   userName: any;
   userImg: any;
@@ -35,27 +35,26 @@ export class ChatHistoryComponent {
   }
 
 
-  sentMessageUserImg(id: any) {
+  sentMessageUserImg(id: string) {
     // debugger;
     let user = this.sentMessageUser(id);
     if (this.users) {
       debugger;
       // const user = this.users.find((user: User) => user.id === id);
-      return user.profileImg;
+      return user?.profileImg;
+    } else {
+      return undefined;
     }
   }
 
 
-  sentMessageUser(id: any) {
-    // debugger;
-    if (this.users) {
-      // debugger;
-      const user = this.users.find((user: User) => user.id === id);
-      this.userName = user.firstLastName;
-      this.userImg = user.profileImg;
-      return user.firstLastName;
-    }
+  sentMessageUser(id: string): User | undefined {
+    const user = this.users?.find((user: User) => user.id === id);
+    this.userName = user?.firstLastName;
+    this.userImg = user?.profileImg;
+    return user;
   }
+  
 
 
   getChannelMessages(): Message[] | null {
@@ -74,10 +73,12 @@ export class ChatHistoryComponent {
   }
 
 
-  getUserImage(firstLastName: string): string {
-    this.users = this.usersServ.users$;
-    const messageUser = this.users.find((user: any) => user.firstLastName === `${firstLastName}`);
-    return messageUser?.profileImg;
+  getUserImage(firstLastName: string): void {
+    this.usersServ.users$.subscribe((users: User[]) => {
+      const messageUser = users.find((user: User) => user.firstLastName === firstLastName);
+      return messageUser?.profileImg;
+    });
   }
+  
 
 }

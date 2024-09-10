@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { DocumentData, Firestore, collection, onSnapshot } from '@angular/fire/firestore';
-import { Channel } from '../models/channel.class';
 import { BehaviorSubject, retry } from 'rxjs';
+import { Channel } from '../models/channel.interface';
 
 @Injectable({
   providedIn: 'root'

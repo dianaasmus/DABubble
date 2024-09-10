@@ -3,7 +3,7 @@ import { Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore'
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DocumentData } from 'rxfire/firestore/interfaces';
-import { User } from '../models/user.class';
+import { User } from '../models/user.interface';
 import { BehaviorSubject, map } from 'rxjs';
 
 
@@ -11,7 +11,7 @@ import { BehaviorSubject, map } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  currentUser!: any;
+  currentUser!: User;
   firestore: Firestore = inject(Firestore);
   // users: User[] = [];
   checkData!: boolean;

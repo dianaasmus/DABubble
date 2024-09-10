@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../users.service';
-import { User } from '../../../models/user.class';
+import { User } from '../../../models/user.interface';
 import { map } from 'rxjs';
 import { DialogFeedbackComponent } from '../../dialog-feedback/dialog-feedback.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
