@@ -5,7 +5,7 @@ import { ThreatComponent } from '../chat-history/threat/threat.component';
 import { TextfieldComponent } from '../textfield/textfield.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogChannelSettingsComponent } from '../dialog-channel-settings/dialog-channel-settings.component';
-import { ChannelsService } from '../../channels.service';
+import { ChannelsService } from '../../../services/channels.service';
 import { ChatHeaderComponent } from '../chat-header/chat-header.component';
 
 

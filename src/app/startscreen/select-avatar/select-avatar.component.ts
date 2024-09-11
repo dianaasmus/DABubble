@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogFeedbackComponent } from '../../dialog-feedback/dialog-feedback.component';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
-import { UsersService } from '../../users.service';
+import { UsersService } from '../../../services/users.service';
 
 
 @Component({

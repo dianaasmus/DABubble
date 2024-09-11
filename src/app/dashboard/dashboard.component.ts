@@ -5,7 +5,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './header/header.component';
 import { MainChatComponent } from './main-chat/main-chat.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { UsersService } from '../users.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MessageRenderingService } from '../../message-rendering.service';
-import { UsersService } from '../../users.service';
+import { MessageRenderingService } from '../../../services/message-rendering.service';
+import { UsersService } from '../../../services/users.service';
 import { Message } from '../../../models/message.interface';
 
 @Component({

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { User } from '../../../models/user.interface';
 import { AppComponent } from '../../app.component';
-import { UsersService } from '../../users.service';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-login',

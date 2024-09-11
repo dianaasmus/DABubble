@@ -1,8 +1,8 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { Message } from '../../../models/message.interface';
-import { MessageRenderingService } from '../../message-rendering.service';
-import { UsersService } from '../../users.service';
+import { MessageRenderingService } from '../../../services/message-rendering.service';
+import { UsersService } from '../../../services/users.service';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { User } from '../../../models/user.interface';
 

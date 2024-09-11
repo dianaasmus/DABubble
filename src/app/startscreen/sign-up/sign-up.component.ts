@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 import { StartscreenComponent } from '../startscreen.component';
-import { UsersService } from '../../users.service';
+import { UsersService } from '../../../services/users.service';
 
 
 

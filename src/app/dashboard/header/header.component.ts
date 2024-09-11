@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from '../../../models/user.interface';
-import { UsersService } from '../../users.service';
+import { UsersService } from '../../../services/users.service';
 import { DialogProfileDropdownComponent } from '../dialog-profile-dropdown/dialog-profile-dropdown.component';
 
 @Component({
