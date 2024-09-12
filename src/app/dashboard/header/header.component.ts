@@ -12,34 +12,32 @@ import { DialogProfileDropdownComponent } from '../dialog-profile-dropdown/dialo
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  currentUser!: User;
-  users!: any;
+  currentUser: User | undefined;
+  users: any;
 
-
-  constructor(public dialog: MatDialog, public usersServ: UsersService) {}
-
+  constructor(public dialog: MatDialog, public usersServ: UsersService) { }
 
   ngOnInit() {
     this.loadUsers();
   }
 
-
   async loadUsers() {
-    await this.usersServ.getUsers();  
-    this.usersServ.returnCurrentUser().subscribe(currentUser => {
-      if (currentUser !== null) {
-        this.currentUser = currentUser;
-        console.log(this.currentUser);
-      }
-    });
+    this.currentUser = this.usersServ.currentUser;
+    if (this.currentUser === undefined) {
+      await this.usersServ.getUsers();
+      this.usersServ.returnCurrentUser().subscribe(currentUser => {
+        if (currentUser !== null) {
+          this.currentUser = currentUser;
+          console.log(this.currentUser);
+        }
+      });
+    }
   }
-  
 
   reloadPage() {
     window.location.reload();
   }
-
-
+  
   openDrodown() {
     this.dialog.open(DialogProfileDropdownComponent, {
       panelClass: 'profile-dropdown-container',

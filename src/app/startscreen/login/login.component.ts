@@ -37,7 +37,7 @@ export class LoginComponent {
    * Navigates to the user's page by setting the router URL based on the current user's ID.
    */
   setRouterId(): void {
-    this.router.navigateByUrl('' + this.usersServ.currentUser.id);
+    this.router.navigateByUrl('' + this.usersServ.currentUser?.id);
   }
 
   /**

@@ -11,7 +11,7 @@ import { BehaviorSubject, map } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  currentUser!: User;
+  currentUser: User | undefined;
   firestore: Firestore = inject(Firestore);
   // users: User[] = [];
   checkData!: boolean;
@@ -31,7 +31,7 @@ export class UsersService {
   constructor(private fb: FormBuilder, private route: Router) {
     this.getUsers();
     this.getUrlId();
-    this.getCurrentUser();
+    this.currentUser = this.getCurrentUser();
   }
 
   
@@ -61,15 +61,19 @@ export class UsersService {
   }
 
 
-  getCurrentUser() {
+  getCurrentUser(): User | undefined {
     this.getUsers();
 
     this.returnCurrentUser().subscribe(currentUser => {
-      if (currentUser !== null) {
-        this.currentUser = currentUser;
+      // if (currentUser !== null) {
+        
         console.log(this.currentUser);
-      }
+      //   return currentUser;
+      // }
+      return currentUser ? currentUser : undefined;
     });
+
+    return undefined
   }
 
 

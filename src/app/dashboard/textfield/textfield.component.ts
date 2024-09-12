@@ -29,7 +29,7 @@ export class TextfieldComponent {
 
   sendMessage() {
     const messageToSend = {
-      user: this.usersServ.currentUser.id,
+      user: this.usersServ.currentUser?.id,
       message: this.messageDetails.value.message,
       time: Date.now() // Zeitstempel für die aktuelle Zeit
     };

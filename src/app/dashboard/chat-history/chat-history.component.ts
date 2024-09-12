@@ -21,8 +21,9 @@ export class ChatHistoryComponent {
   currentChat = 'Entwicklerteam';
   users: User[] = [];
   // users: User[] = [];
-  userName: any;
-  userImg: any;
+  userName: string | undefined;
+  userImg: string | undefined;
+  currentUser: User | undefined;
 
   constructor(public mainChat: MainChatComponent, public messagesServ: MessageRenderingService, public usersServ: UsersService) { }
 
@@ -32,6 +33,8 @@ export class ChatHistoryComponent {
       this.users = users;
       // Führen Sie hier die gewünschte Logik mit den Benutzern aus
     });
+    this.currentUser = this.usersServ.getCurrentUser();
+    console.log(this.users)
   }
 
 

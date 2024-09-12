@@ -61,7 +61,7 @@ export class MessageRenderingService {
   private setMessageObject(obj: any, id: string) {
     return {
       id: obj.id || id,
-      user: obj.user,
+      userId: obj.user,
       message: obj.message,
       time: obj.time
     };
