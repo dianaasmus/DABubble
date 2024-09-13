@@ -17,7 +17,9 @@ export class UsersService {
   checkData!: boolean;
   urlId!: any;
   private usersSubject = new BehaviorSubject<User[]>([]);
+  private dataLoadedSubject = new BehaviorSubject<boolean>(false);
   users$ = this.usersSubject.asObservable();
+  public users: User[] = [];
 
   newUser = this.fb.group({
     firstLastName: ['', [Validators.required, this.fullNameValidator]],
@@ -28,11 +30,19 @@ export class UsersService {
   });
 
 
-  constructor(private fb: FormBuilder, private route: Router) {
-    this.getUsers();
-    this.getUrlId();
-    this.currentUser = this.getCurrentUser();
-  }
+  constructor(private fb: FormBuilder, private route: Router) {   }
+
+  // async ngOnInit() {
+  //   debugger
+  //   this.getUsers().then(users => {
+  //     this.users = users;  // Setze die Benutzer nach der Promise-Auflösung
+  //     // this.urlId = this.getUrlId();
+  //     // this.currentUser = this.getCurrentUser();
+  //   });
+  //   // this.users = await this.getUsers(); 
+  //   this.urlId = this.getUrlId();
+    
+  // }
 
   
   fullNameValidator(control: AbstractControl): { [key: string]: boolean } | null {
@@ -57,33 +67,37 @@ export class UsersService {
   getUrlId() {
     const url = this.route.url;
     const urlSplit = url.split("/");
-    this.urlId = urlSplit[1];
+    return urlSplit[1];
   }
 
 
   getCurrentUser(): User | undefined {
-    this.getUsers();
+    // this.getUsers();
 
-    this.returnCurrentUser().subscribe(currentUser => {
-      // if (currentUser !== null) {
+    // this.returnCurrentUser().subscribe(currentUser => {
+    //   // if (currentUser !== null) {
         
-        console.log(this.currentUser);
-      //   return currentUser;
-      // }
-      return currentUser ? currentUser : undefined;
-    });
+    //     console.log(this.currentUser);
+    //   //   return currentUser;
+    //   // }
+    //   return currentUser ? currentUser : undefined;
+    // });
 
     return undefined
   }
 
 
-  returnCurrentUser() {
-    return this.users$.pipe(
-      map(users => users.find(user => user.id === this.urlId) || null)
-    );
+  returnCurrentUser(users: User[]) {
+    users.forEach(user => {
+      if (user.id === this.getUrlId()) {
+        return user;
+        
+      }
+    return undefined
+
+    });
   }
-
-
+  
   onCheckboxChange(event: Event) {
     this.checkData = (event.target as HTMLInputElement).checked;
     this.newUser.get('checkData')?.setValue(this.checkData);
@@ -113,16 +127,20 @@ export class UsersService {
 
 
   async getUsers(): Promise<void> {
-    const ref = this.getSingleDocRef();
-    const list = await getDocs(ref);
-    const users = list.docs.map((doc) => {
-      const docId = doc.id;
-      return this.setUserObject(doc.data(), docId);
-    });
-    this.usersSubject.next(users);
-    this.getUrlId();
-  }
-
+    try {
+      const ref = this.getSingleDocRef();
+      const list = await getDocs(ref);
+  
+      const users = list.docs.map((doc) => {
+        const docId = doc.id;
+        return this.setUserObject(doc.data(), docId);
+      });
+  
+      this.usersSubject.next(users);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  }  
 
   private getSingleDocRef() {
     return collection(this.firestore, 'users');

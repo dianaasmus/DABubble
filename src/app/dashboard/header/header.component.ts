@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from '../../../models/user.interface';
 import { UsersService } from '../../../services/users.service';
 import { DialogProfileDropdownComponent } from '../dialog-profile-dropdown/dialog-profile-dropdown.component';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,25 +13,24 @@ import { DialogProfileDropdownComponent } from '../dialog-profile-dropdown/dialo
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  currentUser: User | undefined;
-  users: any;
+  currentUser: any;
+  users: User[] = [];
+  private usersSubscription!: Subscription;
 
   constructor(public dialog: MatDialog, public usersServ: UsersService) { }
 
   ngOnInit() {
-    this.loadUsers();
+    this.usersSubscription = this.usersServ.users$.subscribe(users => {
+      this.users = users;
+      console.log('Aktuelle Benutzer:', users);
+    });
+
+    this.usersServ.getUsers();
   }
 
-  async loadUsers() {
-    this.currentUser = this.usersServ.currentUser;
-    if (this.currentUser === undefined) {
-      await this.usersServ.getUsers();
-      this.usersServ.returnCurrentUser().subscribe(currentUser => {
-        if (currentUser !== null) {
-          this.currentUser = currentUser;
-          console.log(this.currentUser);
-        }
-      });
+  ngOnDestroy() {
+    if (this.usersSubscription) {
+      this.usersSubscription.unsubscribe();
     }
   }
 
