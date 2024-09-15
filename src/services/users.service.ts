@@ -4,8 +4,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { User } from '../models/user.interface';
-import { BehaviorSubject, map } from 'rxjs';
-
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +12,11 @@ import { BehaviorSubject, map } from 'rxjs';
 export class UsersService {
   currentUser: User | undefined;
   firestore: Firestore = inject(Firestore);
-  // users: User[] = [];
-  checkData!: boolean;
-  urlId!: any;
-  private usersSubject = new BehaviorSubject<User[]>([]);
-  private dataLoadedSubject = new BehaviorSubject<boolean>(false);
-  users$ = this.usersSubject.asObservable();
-  public users: User[] = [];
+  checkData: boolean = false;
+  urlId: string | undefined;
+
+  public usersSubject = new BehaviorSubject<User[]>([]);
+  public dataLoadedSubject = new BehaviorSubject<boolean>(false);
 
   newUser = this.fb.group({
     firstLastName: ['', [Validators.required, this.fullNameValidator]],
@@ -29,40 +26,25 @@ export class UsersService {
     profileImg: ['', undefined]
   });
 
+  constructor(private fb: FormBuilder, private route: Router) {}
 
-  constructor(private fb: FormBuilder, private route: Router) {   }
-
-  // async ngOnInit() {
-  //   debugger
-  //   this.getUsers().then(users => {
-  //     this.users = users;  // Setze die Benutzer nach der Promise-Auflösung
-  //     // this.urlId = this.getUrlId();
-  //     // this.currentUser = this.getCurrentUser();
-  //   });
-  //   // this.users = await this.getUsers(); 
-  //   this.urlId = this.getUrlId();
-    
-  // }
-
-  
   fullNameValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
     if (!value) return null;
   
     const parts = value.trim().split(' ');
     if (parts.length < 2) {
-      return { 'fullNameInvalid': true };  // At least two words (first and last name) are required
+      return { 'fullNameInvalid': true };
     }
   
     for (const part of parts) {
       if (!/^[A-Za-zÄäÖöÜüß]+$/.test(part)) {
-        return { 'fullNameInvalid': true };  // Each part must match the name pattern
+        return { 'fullNameInvalid': true };
       }
     }
   
     return null;
   }
-
 
   getUrlId() {
     const url = this.route.url;
@@ -70,31 +52,16 @@ export class UsersService {
     return urlSplit[1];
   }
 
-
   getCurrentUser(): User | undefined {
-    // this.getUsers();
-
-    // this.returnCurrentUser().subscribe(currentUser => {
-    //   // if (currentUser !== null) {
-        
-    //     console.log(this.currentUser);
-    //   //   return currentUser;
-    //   // }
-    //   return currentUser ? currentUser : undefined;
-    // });
-
-    return undefined
+    return undefined;
   }
-
 
   returnCurrentUser(users: User[]) {
     users.forEach(user => {
       if (user.id === this.getUrlId()) {
         return user;
-        
       }
-    return undefined
-
+      return undefined;
     });
   }
   
@@ -102,7 +69,6 @@ export class UsersService {
     this.checkData = (event.target as HTMLInputElement).checked;
     this.newUser.get('checkData')?.setValue(this.checkData);
   }
-
 
   private setUserObject(obj: DocumentData, docId: string): User {
     return {
@@ -114,17 +80,16 @@ export class UsersService {
     } as User;
   }
 
-
-  async addUser() {
+  async addUser(): Promise<void> {
     try {
       const newUser = this.newUser.value;
       const collectionRef = this.getSingleDocRef();
       await addDoc(collectionRef, newUser);
+      await this.getUsers();
     } catch (err) {
-      console.error(err);
+      console.error('Error adding user:', err);
     }
   }
-
 
   async getUsers(): Promise<void> {
     try {
@@ -137,13 +102,21 @@ export class UsersService {
       });
   
       this.usersSubject.next(users);
+      this.dataLoadedSubject.next(true);
     } catch (error) {
       console.error('Error fetching users:', error);
     }
-  }  
+  }
+
+  getUsersValue(): User[] {
+    return this.usersSubject.getValue();
+  }
+
+  getDataLoadedValue(): boolean {
+    return this.dataLoadedSubject.getValue();
+  }
 
   private getSingleDocRef() {
     return collection(this.firestore, 'users');
   }
-
 }

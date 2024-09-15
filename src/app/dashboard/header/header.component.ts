@@ -20,7 +20,7 @@ export class HeaderComponent {
   constructor(public dialog: MatDialog, public usersServ: UsersService) { }
 
   ngOnInit() {
-    this.usersSubscription = this.usersServ.users$.subscribe(users => {
+    this.usersSubscription = this.usersServ.usersSubject.subscribe(users => {
       this.users = users;
       console.log('Aktuelle Benutzer:', users);
     });

@@ -16,6 +16,7 @@ import { UsersService } from '../../../services/users.service';
 })
 export class LoginComponent {
   loginFeedbacks!: string;
+  enteredEmail: string | undefined;
   loginUser = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
@@ -33,11 +34,21 @@ export class LoginComponent {
     private appComponent: AppComponent
   ) { }
 
+
+  ngOnInit() {
+    this.usersServ.getUsers();
+  }
+
   /**
    * Navigates to the user's page by setting the router URL based on the current user's ID.
    */
   setRouterId(): void {
     this.router.navigateByUrl('' + this.usersServ.currentUser?.id);
+  }
+
+  async loginGuest(event: Event) {
+    this.enteredEmail = "guest@guest.com";
+    this.submitForm(event);
   }
 
   /**
@@ -47,13 +58,20 @@ export class LoginComponent {
   */
   async submitForm(e: any): Promise<void> {
     e.preventDefault();
-    const enteredEmail = this.loginUser.get('email')?.value;
-    let userExists = await this.returnUserEmail(enteredEmail);
+    this.enteredEmail = this.enteredEmail || this.loginUser.get('email')?.value;
 
-    if (userExists) {
-      this.tryCatchLogin(userExists);
+    // this.enteredEmail = this.enteredEmail || this.loginUser.get('email')?.value || '';
+
+    if (this.enteredEmail) {
+      let userExists = await this.returnUserEmail(this.enteredEmail);
+  
+      if (userExists) {
+        this.tryCatchLogin(userExists);
+      } else {
+        this.loginFeedback();
+      }
     } else {
-      this.loginFeedback();
+      this.loginFeedback(); //??
     }
   }
 
@@ -107,7 +125,7 @@ export class LoginComponent {
    */
   returnUserEmail(enteredEmail: string): User | null {
     let foundUser = null;
-    this.usersServ.users$
+    this.usersServ.usersSubject
       .pipe(
         map(
           (users) => users.find((user) => user.email === enteredEmail) || null
@@ -147,7 +165,7 @@ export class LoginComponent {
     const inputElement = event.target as HTMLInputElement;
     let foundUser;
     const enteredPassword = this.loginUser.get('password')?.value;
-    this.usersServ.users$
+    this.usersServ.usersSubject
       .pipe(
         map(
           (users) => users.find((user) => user.password === enteredPassword) || null

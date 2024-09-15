@@ -50,7 +50,7 @@ export class ChatHeaderComponent {
 
 
   returnUserId(channelUserId: string) {
-    return this.usersServ.users$.pipe(
+    return this.usersServ.usersSubject.pipe(
       map(users => users.find(user => user.id === channelUserId))
     );
   }

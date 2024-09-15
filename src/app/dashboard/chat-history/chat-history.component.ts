@@ -29,7 +29,7 @@ export class ChatHistoryComponent {
 
 
   ngOnInit(): void {
-    this.usersServ.users$.subscribe(users => {
+    this.usersServ.usersSubject.subscribe(users => {
       this.users = users;
       // Führen Sie hier die gewünschte Logik mit den Benutzern aus
     });
@@ -77,7 +77,7 @@ export class ChatHistoryComponent {
 
 
   getUserImage(firstLastName: string): void {
-    this.usersServ.users$.subscribe((users: User[]) => {
+    this.usersServ.usersSubject.subscribe((users: User[]) => {
       const messageUser = users.find((user: User) => user.firstLastName === firstLastName);
       return messageUser?.profileImg;
     });
