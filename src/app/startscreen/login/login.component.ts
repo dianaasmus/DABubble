@@ -22,22 +22,12 @@ export class LoginComponent {
     password: new FormControl(),
   });
 
-  guestUser: User = {
-    firstLastName: 'Gast',
-    profileImg: '../../../assets/imgs/person.png',
-  };
-
   constructor(
     private usersServ: UsersService,
     private router: Router,
     public dialog: MatDialog,
     private appComponent: AppComponent
   ) { }
-
-
-  ngOnInit() {
-    this.usersServ.getUsers();
-  }
 
   /**
    * Navigates to the user's page by setting the router URL based on the current user's ID.
@@ -46,8 +36,23 @@ export class LoginComponent {
     this.router.navigateByUrl('' + this.usersServ.currentUser?.id);
   }
 
-  async loginGuest(event: Event) {
-    this.enteredEmail = "guest@guest.com";
+  /**
+   * Handles the guest login process by retrieving guest credentials 
+   * and assigning them to the login form. Once the credentials are set, 
+   * the form is submitted.
+   * 
+   * @async
+   * @function checkGuestLogin
+   * @returns {Promise<void>} - A promise that resolves when the guest login process is complete.
+   */
+  async checkGuestLogin() {
+    const guestCredentials = this.usersServ.getGuestCredentials();
+
+    this.loginUser.patchValue({
+      email: guestCredentials.email,
+      password: guestCredentials.password
+    });
+
     this.submitForm(event);
   }
 
@@ -58,20 +63,18 @@ export class LoginComponent {
   */
   async submitForm(e: any): Promise<void> {
     e.preventDefault();
-    this.enteredEmail = this.enteredEmail || this.loginUser.get('email')?.value;
-
-    // this.enteredEmail = this.enteredEmail || this.loginUser.get('email')?.value || '';
+    this.enteredEmail = this.loginUser.get('email')?.value;
 
     if (this.enteredEmail) {
       let userExists = await this.returnUserEmail(this.enteredEmail);
-  
+
       if (userExists) {
         this.tryCatchLogin(userExists);
       } else {
         this.loginFeedback();
       }
     } else {
-      this.loginFeedback(); //??
+      this.loginFeedback();
     }
   }
 
@@ -177,11 +180,4 @@ export class LoginComponent {
     foundUser ? true : this.loginFeedback();
   }
 
-  /**
-   * Redirects the user to the dashboard as a guest user.
-   */
-  redirectDashboard(): void {
-    this.usersServ.currentUser = this.guestUser;
-    this.router.navigate(['/dashboard']);
-  }
 }

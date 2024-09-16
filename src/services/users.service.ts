@@ -28,6 +28,24 @@ export class UsersService {
 
   constructor(private fb: FormBuilder, private route: Router) {}
 
+  /**
+   * Retrieves the guest login credentials (email and password).
+   * 
+   * @function getGuestCredentials
+   * @returns {{ email: string, password: string }} - An object containing the guest email and password.
+   */
+  getGuestCredentials(): { email: string; password: string } {
+    return {
+      email: 'guest@guest.com',
+      password: 'guest'
+    };
+  }
+
+  /**
+   * Validator for the full name field in the form.
+   * @param control - The form control to validate.
+   * @returns An object with a validation error or null if valid.
+   */
   fullNameValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
     if (!value) return null;
@@ -46,16 +64,29 @@ export class UsersService {
     return null;
   }
 
+  /**
+   * Gets the user ID from the URL.
+   * @returns The user ID as a string.
+   */
   getUrlId() {
     const url = this.route.url;
     const urlSplit = url.split("/");
     return urlSplit[1];
   }
 
+  /**
+   * Gets the current user.
+   * @returns The current user or undefined if not set.
+   */
   getCurrentUser(): User | undefined {
     return undefined;
   }
 
+  /**
+   * Returns the user matching the current URL ID.
+   * @param users - The list of users to search through.
+   * @returns The matching user or undefined.
+   */
   returnCurrentUser(users: User[]) {
     users.forEach(user => {
       if (user.id === this.getUrlId()) {
@@ -65,11 +96,21 @@ export class UsersService {
     });
   }
   
+  /**
+   * Handles checkbox change events and updates the form control.
+   * @param event - The change event from the checkbox.
+   */
   onCheckboxChange(event: Event) {
     this.checkData = (event.target as HTMLInputElement).checked;
     this.newUser.get('checkData')?.setValue(this.checkData);
   }
 
+  /**
+   * Converts Firestore document data to a User object.
+   * @param obj - The document data from Firestore.
+   * @param docId - The document ID from Firestore.
+   * @returns The User object.
+   */
   private setUserObject(obj: DocumentData, docId: string): User {
     return {
       id: docId || obj['id'],
@@ -80,6 +121,10 @@ export class UsersService {
     } as User;
   }
 
+  /**
+   * Adds a new user to the Firestore database and updates the users list.
+   * @returns A promise that resolves when the operation is complete.
+   */
   async addUser(): Promise<void> {
     try {
       const newUser = this.newUser.value;
@@ -91,6 +136,10 @@ export class UsersService {
     }
   }
 
+  /**
+   * Fetches the list of users from Firestore and updates the BehaviorSubject.
+   * @returns A promise that resolves when the operation is complete.
+   */
   async getUsers(): Promise<void> {
     try {
       const ref = this.getSingleDocRef();
@@ -108,14 +157,26 @@ export class UsersService {
     }
   }
 
+  /**
+   * Gets the current value of the users list.
+   * @returns The current list of users.
+   */
   getUsersValue(): User[] {
     return this.usersSubject.getValue();
   }
 
+  /**
+   * Gets the current value of the data loaded state.
+   * @returns True if data has been loaded, false otherwise.
+   */
   getDataLoadedValue(): boolean {
     return this.dataLoadedSubject.getValue();
   }
 
+  /**
+   * Gets a reference to the 'users' collection in Firestore.
+   * @returns A Firestore collection reference.
+   */
   private getSingleDocRef() {
     return collection(this.firestore, 'users');
   }

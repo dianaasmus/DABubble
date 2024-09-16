@@ -44,7 +44,7 @@
     <div class="login-options">
         <button [disabled]="loginUser.invalid" [class.disabled-btn]="loginUser.invalid" type="submit"
             class="login-btn">Anmelden</button>
-        <button (click)="loginGuest($event)" class="guest-login-btn">Gäste-Login</button>
+        <button (click)="checkGuestLogin()" class="guest-login-btn">Gäste-Login</button>
     </div>
 
 </form>
