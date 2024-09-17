@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { User } from '../../../models/user.interface';
 import { UsersService } from '../../../services/users.service';
 import { DialogProfileDropdownComponent } from '../dialog-profile-dropdown/dialog-profile-dropdown.component';
-import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +17,7 @@ export class HeaderComponent {
   users: User[] = [];
   private usersSubscription!: Subscription;
 
-  constructor(public dialog: MatDialog, public usersServ: UsersService) { }
+  constructor(public dialog: MatDialog, public usersServ: UsersService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.usersSubscription = this.usersServ.usersSubject.subscribe(users => {
@@ -28,17 +28,33 @@ export class HeaderComponent {
     this.usersServ.getUsers();
   }
 
+  ngAfterViewChecked() {
+    const newCurrentUser = this.usersServ.returnCurrentUser();
+    if (newCurrentUser !== this.currentUser) {
+      this.currentUser = newCurrentUser;
+      this.cdRef.detectChanges();
+    }
+  }
+
   ngOnDestroy() {
     if (this.usersSubscription) {
       this.usersSubscription.unsubscribe();
     }
   }
 
-  reloadPage() {
+  /**
+   * Reloads the current page.
+   * This method forces a full reload of the current page using the `window.location.reload()` method.
+   */
+  reloadPage(): void {
     window.location.reload();
   }
   
-  openDrodown() {
+  /**
+   * Opens a dropdown dialog for the user profile.
+   * This method opens a dialog with the `DialogProfileDropdownComponent` and applies the 'profile-dropdown-container' class to the dialog panel.
+   */
+  openDrodown(): void {
     this.dialog.open(DialogProfileDropdownComponent, {
       panelClass: 'profile-dropdown-container',
     });

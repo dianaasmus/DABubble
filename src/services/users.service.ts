@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore';
+import { CollectionReference, Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { User } from '../models/user.interface';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +68,7 @@ export class UsersService {
    * Gets the user ID from the URL.
    * @returns The user ID as a string.
    */
-  getUrlId() {
+  getUrlId(): string {
     const url = this.route.url;
     const urlSplit = url.split("/");
     return urlSplit[1];
@@ -87,20 +87,26 @@ export class UsersService {
    * @param users - The list of users to search through.
    * @returns The matching user or undefined.
    */
-  returnCurrentUser(users: User[]) {
-    users.forEach(user => {
-      if (user.id === this.getUrlId()) {
-        return user;
-      }
-      return undefined;
-    });
+  returnCurrentUser(): User | null {
+    let foundUser = null;
+    this.usersSubject
+      .pipe(
+        map(
+          (users) => users.find((user) => user.id === this.getUrlId()) || null
+        )
+      )
+      .subscribe((user) => {
+        foundUser = user;
+      });
+
+    return foundUser;
   }
   
   /**
    * Handles checkbox change events and updates the form control.
    * @param event - The change event from the checkbox.
    */
-  onCheckboxChange(event: Event) {
+  onCheckboxChange(event: Event): void {
     this.checkData = (event.target as HTMLInputElement).checked;
     this.newUser.get('checkData')?.setValue(this.checkData);
   }
@@ -177,7 +183,7 @@ export class UsersService {
    * Gets a reference to the 'users' collection in Firestore.
    * @returns A Firestore collection reference.
    */
-  private getSingleDocRef() {
+  private getSingleDocRef(): CollectionReference<DocumentData> {
     return collection(this.firestore, 'users');
   }
 }

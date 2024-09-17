@@ -29,6 +29,11 @@ export class LoginComponent {
     private appComponent: AppComponent
   ) { }
 
+
+  ngOnInit() {
+    this.usersServ.getUsers();
+  }
+
   /**
    * Navigates to the user's page by setting the router URL based on the current user's ID.
    */
